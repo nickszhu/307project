@@ -5,7 +5,7 @@ Suggested technologies:
 ### Frontend:
 
 1. HTML/CSS
-2. JS 
+2. JS (registration/login popup)
 3. JQuery
 4. Bootstrap/Angurlar for framework
 5. XML/JSON for transfering data
@@ -26,3 +26,19 @@ Or we can use Node.js to build backend
 
 12. Google Maps API
 13. socket programming
+
+
+### Page templates:
+
+*Search results
+*Home page:
+**Slideshow?
+**Random/features items populate the page
+*Login
+*Account Information
+*Item Information
+*Sidebar:
+**Home page sidebar: Categories
+**REFINE SEARCH RESULTS
+**Price range
+**Lease length
