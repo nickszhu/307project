@@ -32,13 +32,13 @@ Or we can use Node.js to build backend
 
 *Search results
 *Home page:
-**Slideshow?
-**Random/features items populate the page
+  Slideshow?
+  Random/features items populate the page
 *Login
 *Account Information
 *Item Information
 *Sidebar:
-**Home page sidebar: Categories
-**REFINE SEARCH RESULTS
-**Price range
-**Lease length
+  Home page sidebar: Categories
+  REFINE SEARCH RESULTS
+  Price range
+  Lease length
