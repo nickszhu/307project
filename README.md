@@ -31,13 +31,13 @@ Or we can use Node.js to build backend
 ### Page templates:
 
 Search results<br/>
-*Home page:<br/>
+Home page:<br/>
   Slideshow?<br/>
   Random/features items populate the page<br/>
-*Login<br/>
-*Account Information<br/>
-*Item Information<br/>
-*Sidebar:<br/>
+Login<br/>
+Account Information<br/>
+Item Information<br/>
+Sidebar:<br/>
   Home page sidebar: Categories<br/>
   REFINE SEARCH RESULTS<br/>
   Price range<br/>
