@@ -30,15 +30,15 @@ Or we can use Node.js to build backend
 
 ### Page templates:
 
-*Search results
-*Home page:
-  Slideshow?
-  Random/features items populate the page
-*Login
-*Account Information
-*Item Information
-*Sidebar:
-  Home page sidebar: Categories
-  REFINE SEARCH RESULTS
-  Price range
-  Lease length
+Search results<br/>
+*Home page:<br/>
+  Slideshow?<br/>
+  Random/features items populate the page<br/>
+*Login<br/>
+*Account Information<br/>
+*Item Information<br/>
+*Sidebar:<br/>
+  Home page sidebar: Categories<br/>
+  REFINE SEARCH RESULTS<br/>
+  Price range<br/>
+  Lease length<br/>
