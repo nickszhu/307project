@@ -34,7 +34,11 @@ header {
 	font-style: normal;
 	font-weight: 400;
 	font-size: 40px;
+<<<<<<< HEAD
 	background-color: #113358;
+=======
+	background:#4B0015;
+>>>>>>> ca0643a06159d8bf73f593ad1ee9d64f4c339205
 	}
 
 /* div for Links in header */
@@ -46,7 +50,11 @@ header {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	height: 54px;
+<<<<<<< HEAD
 	background-color: #113358;
+=======
+	background:#4B0015;
+>>>>>>> ca0643a06159d8bf73f593ad1ee9d64f4c339205
 }
 
 /* Links in header */
@@ -72,6 +80,7 @@ header {
 	}
 
 /*Menu bar under search*/
+<<<<<<< HEAD
 #topmenubar {
 	height: 20px;
 	background: #2C425A;
@@ -104,6 +113,13 @@ header {
 	background-color: #001E2F;
 	}
 
+=======
+#menubar {
+	height: 20px;
+	background:#4B0015;
+}
+
+>>>>>>> ca0643a06159d8bf73f593ad1ee9d64f4c339205
 
 /* Offer text banner*/
 
