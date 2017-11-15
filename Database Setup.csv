@@ -1,0 +1,26 @@
+307 Project Database Layout,,,,,
+,,,,,
+Table Name,User,Item,Category,Transaction,Messages
+,UserID,ItemID,CategoryID,TransactionID,Sender
+,UserName,ItemName,CategoryName,ItemID,Reciver
+,FirstName,ItemDescription,Description,LenderID,Message
+,LastName,OwnerID,Picture,BorrowerID,DateSent
+,Address,CategoryID,,Price,
+,City,RentalPrice,,TotalPaid,
+,State,Availability,,TransactionState,
+,PostalCode,Picture,,StartDate,
+,Country,Rating,,EndDate,
+,Phone,,,LenderRating,
+,Email,,,BorrowerRating,
+,Password,,,,
+,CreditCard,,,,
+,CardExpMonth,,,,
+,CardExpYear,,,,
+,BillingAddress,,,,
+,BillingCity,,,,
+,BillingRegion,,,,
+,BillingPostalCode,,,,
+,BillingCountry,,,,
+,Rating,,,,
+,DateStarted,,,,
+,LastLogin,,,,
