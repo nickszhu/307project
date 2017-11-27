@@ -1,29 +1,23 @@
+<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css">
 
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Owner</th>
-        <th>Description</th>
-        <th>Rating</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in items %}
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.category_ID }}</td>
-          <td>{{ item.owner_ID }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.rating }}</td>
-          <td>{{ item.rental_price }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+{% extends "./index.html" %}
+{% load static from staticfiles %}
+
+{% block mainbody %}
+ <section class="mainContent">
+    {% for item in items %}
+      {% if forloop.counter0 == 0 %}<div class="productRow">{% endif %}
+      {% if forloop.counter0|divisibleby:3 %}</div><div class="productRow">{% endif %}
+      <article class="productInfo"><!-- Each individual product description -->
+        <div><img alt="{{ item.picture }}" src="{% static item.picture.url %}" height="200" width="200"></div>
+        <p class="price">{{ item.rental_price }}</p>
+        <p class="productContent">{{ item.name }}</p>
+        <input type="button" name="button" value="Buy" class="buyButton">
+      </article>
+      {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
+</section>
+
   {% if items.has_other_pages %}
     <ul class="pagination">
       {% if items.has_previous %}
@@ -45,3 +39,4 @@
       {% endif %}
     </ul>
   {% endif %}
+{% endblock %}
