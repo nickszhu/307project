@@ -1,6 +1,5 @@
 from django.http import HttpResponse
-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators import csrf
 from anyWares.models import Item
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
