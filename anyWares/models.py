@@ -3,9 +3,11 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from mysite.settings import MEDIA_ROOT
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-class User_Profile(models.Model):
-    user = models.ForeignKey(User)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
@@ -30,6 +32,15 @@ class User_Profile(models.Model):
     def __str__(self):
         return str(self.user)
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
 class Category(models.Model):
     category_name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
@@ -42,7 +53,7 @@ class Item(models.Model):
         return 'static/anyWares/media/%s' % filename
     name = models.CharField(max_length=20)
     category_ID = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
-    owner_ID = models.ForeignKey(User_Profile, null=True, on_delete=models.CASCADE)
+    owner_ID = models.ForeignKey(Profile, null=True, on_delete=models.CASCADE)
     description = models.CharField(null=True, max_length=100)
     rating = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     rental_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
@@ -58,8 +69,8 @@ class Item_Calandar(models.Model):
 
 class Rental(models.Model):
     item_ID = models.ForeignKey(Item, on_delete=models.CASCADE)
-    lender_ID = models.ForeignKey(User_Profile, null=True, related_name='lender')
-    borrower_ID = models.ForeignKey(User_Profile, null=True, related_name='borrower')
+    lender_ID = models.ForeignKey(Profile, null=True, related_name='lender')
+    borrower_ID = models.ForeignKey(Profile, null=True, related_name='borrower')
     rental_price = models.DecimalField(max_digits=10, decimal_places=2)
     total_paid = models.DecimalField(max_digits=10, decimal_places=2)
     transaction_state = models.CharField(max_length=20)
@@ -71,7 +82,7 @@ class Rental_Calandar(models.Model):
     rental_date = models.DateTimeField(auto_now=True)
 
 class Message(models.Model):
-    sender_ID = models.ForeignKey(User_Profile, null=True, related_name='sender')
-    reciver_ID = models.ForeignKey(User_Profile, null=True, related_name='reciver')
+    sender_ID = models.ForeignKey(Profile, null=True, related_name='sender')
+    reciver_ID = models.ForeignKey(Profile, null=True, related_name='reciver')
     message_body = models.CharField(max_length=100)
     date_sent = models.DateTimeField(auto_now=True)
