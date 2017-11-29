@@ -1,9 +1,9 @@
-from django.http import HttpResponse
-
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators import csrf
 from anyWares.models import Item
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def index(request):
     return render(request, 'anyWares/index.html')
@@ -23,9 +23,6 @@ def search(request):
 
     return render(request, 'anyWares/search.html', { 'items': items })
     
-
-#def itemView(request):
- #   ctx ={}
-  #  if request.POST:
- #       ctx['result'] = request.POST['search']
- #   return render(request, "anyWares/search.html", ctx)
+def itemView(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    return render(request, 'anyWares/itemView.html', {'item': item})
