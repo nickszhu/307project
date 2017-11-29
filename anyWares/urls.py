@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^search$', views.search, name='search'),
     url(r'^itemView/(?P<item_id>[0-9]+)/$', views.itemView, name='itemView'),
+    url(r'^signup/$', views.signup, name='signup'),
 ]
