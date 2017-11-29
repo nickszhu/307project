@@ -13,7 +13,6 @@
         <p class="price">{{ item.rental_price }}</p>
         <p class="productContent">{{ item.name }}</p>
         <input type="button" name="button" value="Buy" class="buyButton">
-        <li><a href="/anyWares/itemView/{{ item.id }}/">{{ item.name }}</a></li>
       </article>
       {% if forloop.last %}</div>{% endif %}
     {% endfor %}
