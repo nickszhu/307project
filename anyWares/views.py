@@ -10,12 +10,6 @@ def index(request):
 
 
 def search(request):  
-    ctx ={}
-    if request.POST:
-        ctx['result'] = request.POST['search']
-    return render(request, "anyWares/search.html", ctx)
-
-def itemView(request):
     item_list = Item.objects.all()
     page = request.GET.get('page', 1)
 
@@ -27,4 +21,11 @@ def itemView(request):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)
 
-    return render(request, 'anyWares/itemView.html', { 'items': items })
+    return render(request, 'anyWares/search.html', { 'items': items })
+    
+
+#def itemView(request):
+ #   ctx ={}
+  #  if request.POST:
+ #       ctx['result'] = request.POST['search']
+ #   return render(request, "anyWares/search.html", ctx)
