@@ -19,18 +19,15 @@ def search(request):
     except PageNotAnInteger:
         items = paginator.page(1)
     except EmptyPage:
-        items = paginator.page(paginator.num_pages)
-
-    return render(request, 'anyWares/itemView.html', { 'items': items })
-
-
-def createItem(request):
-    return render(request, 'anyWares/createItem.html')
+        items = paginator.page(paginator.num_pages)   
     return render(request, 'anyWares/search.html', { 'items': items })
     
 def itemView(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     return render(request, 'anyWares/itemView.html', {'item': item})
+
+def createItem(request):
+    return render(request, 'anyWares/createItem.html')
 
 def signup(request):
     if request.method == 'POST':

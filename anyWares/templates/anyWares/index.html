@@ -18,38 +18,36 @@
 <body>
   <header> 
     <!-- This is the header content. It contains Logo and links -->
-    <div class="header-top ">
-      <div id="logo">anyWares</div>
-      <div class="searchbar">
-        <form action="search" method="post">
-            {% csrf_token %}
-            <input type="text"  name="search" placeholder="search">
-            <input type="submit" value="Search">
-        </form>
-      </div>
-    </div>
-    <div class="header-navi ">
-        <div class="row">
-          <div class="col">
-            <ul class="nav nav-pills">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Category</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Category 1</a>
-                  <a class="dropdown-item" href="#">Category 2</a>
-                  <a class="dropdown-item" href="#">Category 3</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
+    <div class="row">
+        <div class="col-md-3">
+          <div id="logo">anyWares</div>
+        </div>
+        <div class="searchbar col-md-6">
+          
+            <form class="form-inline">   
               
-            </ul>
-          </div>
-            <div class="col">
-              <ul class="nav justify-content-end">
+              
+          <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2 mb-sm-0">
+              <div class="input-group-addon">
+                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelectPref">
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+            <div class="input-group-addon">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+            
+
+            </form>
+        </div>
+        <div class="col-md-3">
+            <ul class="nav justify-content-end">
                 <li class="nav-item justify-content-end">
                   <a class="nav-link active" href="#">Login</a>
                 </li>
@@ -57,19 +55,13 @@
                   <a class="nav-link" href="#">Register</a>
                 </li>
               </ul>
-            </div>
-            
-          </div>
-      
+        </div>
       
     </div>
+
+   
   </header>
   
-  <!--<section id="offer"> 
-    <!-- The offer section displays a banner text for promotions 
-    <h2>OFFER 50%</h2>
-    <p>REALLY AWESOME DISCOUNTS THIS JULY</p>
-  </section> -->
   
   {% block mainbody %}
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
