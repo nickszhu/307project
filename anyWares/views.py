@@ -9,7 +9,6 @@ from django.contrib.auth.forms import UserCreationForm
 def index(request):
     return render(request, 'anyWares/index.html')
 
-
 def search(request):  
     item_list = Item.objects.all()
     page = request.GET.get('page', 1)
@@ -22,6 +21,11 @@ def search(request):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)
 
+    return render(request, 'anyWares/itemView.html', { 'items': items })
+
+
+def createItem(request):
+    return render(request, 'anyWares/createItem.html')
     return render(request, 'anyWares/search.html', { 'items': items })
     
 def itemView(request, item_id):
