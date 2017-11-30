@@ -8,7 +8,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     return render(request, 'anyWares/index.html')
 
-
 def search(request):  
     ctx ={}
     if request.POST:
@@ -28,3 +27,7 @@ def itemView(request):
         items = paginator.page(paginator.num_pages)
 
     return render(request, 'anyWares/itemView.html', { 'items': items })
+
+
+def createItem(request):
+    return render(request, 'anyWares/createItem.html')
