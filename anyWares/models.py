@@ -25,8 +25,8 @@ class Profile(models.Model):
     billing_state = models.CharField(max_length=20)
     billing_postal_code = models.CharField(max_length=20)
     billing_country = models.CharField(max_length=20)
-    lending_rating = models.DecimalField(max_digits=5, decimal_places=2)
-    borrowing_rating = models.DecimalField(max_digits=5, decimal_places=2)
+    lending_rating = models.DecimalField(default =0, max_digits=5, decimal_places=2)
+    borrowing_rating = models.DecimalField(default =0, max_digits=5, decimal_places=2)
     DateStarted = models.DateTimeField(auto_now=True)
     LastLogin = models.DateTimeField(auto_now=True)
     def __str__(self):
