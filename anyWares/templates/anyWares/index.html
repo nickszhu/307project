@@ -24,22 +24,18 @@
         <div id="logo">anyWares</div>
       </div>
       <div class="col-md-6">
-        <form class="form">
+        <form class="form" action="/anyWares/search/" method="get">
           
           <div class="input-group">
             <div class="input-group-btn">
-              <button type="button" class="input-group-addon btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Category
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-              </div>
-            </div>
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <select class="form-control input-group-addon btn btn-secondary">
+                  <option>Catagory</option>
+                  {% for catagory in catagory_list %}
+                    <option>{{ catagory.category_name }}</option>
+                  {% endfor %}
+                </select>
+              </div>    
+            <input type="text" id="search_box" name="search_box" class="form-control" aria-label="Text input with dropdown button">
             <button type="submit" class="input-group-addon btn btn-primary">Search</button>
           </div>
         </form>

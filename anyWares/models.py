@@ -44,7 +44,6 @@ def save_user_profile(sender, instance, **kwargs):
 class Category(models.Model):
     category_name = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
-    picture = models.FileField()
     def __str__(self):
         return self.category_name
     
