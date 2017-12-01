@@ -5,6 +5,7 @@
 
 {% block mainbody %}
  <section class="mainContent">
+    {% if not item_found %}Could not find item. {% endif %}
     {% for item in items %}
       {% if forloop.counter0 == 0 %}<div class="productRow">{% endif %}
       {% if forloop.counter0|divisibleby:3 %}</div><div class="productRow">{% endif %}

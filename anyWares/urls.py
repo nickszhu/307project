@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^search$', views.search, name='search'),
+    url(r'^search/$', views.search, name='search'),
     url(r'^itemview$', views.itemView, name='itemView'),
     url(r'^createItem$', views.createItem, name='create new item'),
     url(r'^itemView/(?P<item_id>[0-9]+)/$', views.itemView, name='itemView'),
