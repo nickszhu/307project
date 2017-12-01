@@ -42,3 +42,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
+
+
+def login(request):
+    return render(request, 'anyWares/login.html')
