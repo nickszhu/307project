@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <title>anyWares</title>
 
@@ -8,61 +9,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
 
 
-  <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css">
-{% load static %}
+  <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% load static %}
 </head>
 
 <body>
-  <header> 
+  <header>
     <!-- This is the header content. It contains Logo and links -->
     <div class="row">
-        <div class="col-md-3">
-          <div id="logo">anyWares</div>
-        </div>
-        <div class="searchbar col-md-6">
+      <div class="col-md-3">
+        <div id="logo">anyWares</div>
+      </div>
+      <div class="col-md-6">
+        <form class="form">
           
-            <form class="form-inline">   
-              
-              
-          <label class="sr-only" for="inlineFormInputGroup">Username</label>
-            <div class="input-group mb-2 mb-sm-0">
-              <div class="input-group-addon">
-                  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelectPref">
-                      <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
-            <div class="input-group-addon">
-                <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="input-group-addon btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
               </div>
             </div>
-            
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <button type="submit" class="input-group-addon btn btn-primary">Search</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3 align-middle">
+        <ul class="nav justify-content-end">
+          <li class="nav-item justify-content-end">
+            <a class="nav-link active" href="#">Login</a>
+          </li>
+          <li class="nav-item justify-content-end">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+        </ul>
+      </div>
 
-            </form>
-        </div>
-        <div class="col-md-3">
-            <ul class="nav justify-content-end">
-                <li class="nav-item justify-content-end">
-                  <a class="nav-link active" href="#">Login</a>
-                </li>
-                <li class="nav-item justify-content-end">
-                  <a class="nav-link" href="#">Register</a>
-                </li>
-              </ul>
-        </div>
-      
     </div>
-
-   
   </header>
-  
-  
+
+
   {% block mainbody %}
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
@@ -87,18 +83,23 @@
   </div>
 
   {% endblock %}
-  <footer> 
+  <footer>
     This is footer;
   </footer>
 
 
   <!-- Optional JavaScript -->
-  <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default;comfortaa:n3,n4:default;londrina-shadow:n4:default;amaranth:n4:default;viga:n4:default.js" type="text/javascript"></script>
-  
+  <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default;comfortaa:n3,n4:default;londrina-shadow:n4:default;amaranth:n4:default;viga:n4:default.js"
+    type="text/javascript"></script>
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
 
 </body>
+
 </html>
