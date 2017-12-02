@@ -5,6 +5,7 @@
 
 {% block mainbody %}
  <section class="container">
+   {% if not item_found %}Could not find any items with that search, here are our most popular items.{% endif %}
     {% for item in items %}
       {% if forloop.counter0 == 0 %}<div class="row">{% endif %}
       {% if forloop.counter0|divisibleby:3 %}</div><div class="row" style="margin-top:2rem">{% endif %} 

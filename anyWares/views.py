@@ -21,8 +21,11 @@ def search(request):
         search_category = request.GET.get('category_select', None)
 
         if search_string != None and search_category != None:
-            category = category_list.filter(category_name__icontains=search_category)
-            item_list = Item.objects.filter(name__icontains=search_string, category_ID=category) 
+            if search_category == "Category":
+                item_list = Item.objects.filter(name__icontains=search_string)
+            else:
+                category = category_list.filter(category_name__icontains=search_category)
+                item_list = Item.objects.filter(name__icontains=search_string, category_ID=category) 
             if item_list.count() > 0:
                 item_found = True
 
