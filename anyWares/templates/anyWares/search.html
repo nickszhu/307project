@@ -4,18 +4,21 @@
 {% load static from staticfiles %}
 
 {% block mainbody %}
- <section class="mainContent">
-    {% if not item_found %}Could not find item. {% endif %}
+ <section class="container">
     {% for item in items %}
-      {% if forloop.counter0 == 0 %}<div class="productRow">{% endif %}
-      {% if forloop.counter0|divisibleby:3 %}</div><div class="productRow">{% endif %}
-      <article class="productInfo"><!-- Each individual product description -->
-        <div><img alt="{{ item.picture }}" src="{% static item.picture.url %}" height="200" width="200"></div>
-        <p class="price">{{ item.rental_price }}</p>
-        <p class="productContent">{{ item.name }}</p>
-        <input type="button" name="button" value="Buy" class="buyButton">
-        <li><a href="/anyWares/itemView/{{ item.id }}/">{{ item.name }}</a></li>
-      </article>
+      {% if forloop.counter0 == 0 %}<div class="row">{% endif %}
+      {% if forloop.counter0|divisibleby:3 %}</div><div class="row" style="margin-top:2rem">{% endif %} 
+        <div class="col-sm-4">
+          <div class="card bg-light text-center">
+        <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}" style="height:15rem">
+        <div class="card-body">
+          <h4 class="card-title">{{ item.name }}</h4>
+          <p class="card-text">{{ item.rental_price }}</p>
+          <a href="/anyWares/itemView/{{ item.id }}/" class="btn btn-warning">Detail</a>
+        </div>
+      </div>
+        </div>
+      
       {% if forloop.last %}</div>{% endif %}
     {% endfor %}
 </section>

@@ -37,6 +37,13 @@ header {
 	font-size: 30px;
 }
 
+#searchbar{
+	margin-top: 13.5px;
+}
+
+#navictn{
+	margin-top: 14px;
+}
 
 /* div for Links in header */
 
