@@ -1,17 +1,8 @@
-<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> 
-{% extends "../anyWares/index.html" %} 
-{% load static from staticfiles %} 
-
-{% block mainbody %}
-<!-- <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form> -->
-  
+{% extends "../anyWares/index.html" %}{% load static from staticfiles %}
+<link href="{% static " anyWares/style.css " %}"
+  rel="stylesheet" type="text/css"> {% block mainbody %}
 <div class="container">
-  <form method="post">{% csrf_token %}
+  <form class="main-form my-5" method="post">{% csrf_token %}
     <div class="form-group row">
       <label for="username" class="col-md-3 col-form-label">Username</label>
       <div class="col-md-9">
@@ -24,12 +15,13 @@
         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
       </div>
     </div>
-    
-    <div class="form-group row">
-      <button type="submit" class="btn btn-primary">Login</button>
-    </div>
 
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary float-right">Login</button>
+      </div>
+    </div>
   </form>
 </div>
-  
+
 {% endblock %}

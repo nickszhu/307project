@@ -1,13 +1,7 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
-<!-- <h2>Sign up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign up</button>
-</form> -->
-<div class="container my-4">
-  <form>
+<div class="container ">
+  <form class="main-form my-5">
     <div class="form-group row">
       <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
       <div class="col-sm-9">

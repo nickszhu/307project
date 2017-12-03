@@ -67,17 +67,31 @@ footer {
 } 
 
 #navictn{
-	margin-top: 15px;
-	
+	margin-top: 15px;	
 }
 
 #navictn .nav-link{
 	color: white;
 }
 
+#hellonavi{
+	margin-top: 16px;
+	color: white;
+}
+
+#dropdownMenuLink{
+	color: white;
+	font-weight: bold; 
+}
+
 /* div for Links in header */
+.main-form{
+	max-width: 720px;
+	margin: auto;
+}
+
 .container{
-	
+	max-width: 960px!important;
 }
 
 .carousel{
