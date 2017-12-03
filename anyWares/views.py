@@ -5,7 +5,6 @@ from anyWares.models import Item, Category, Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from anyWares.forms import ImageUploadForm 
 from django.template import Context   
 
 def index(request):
@@ -69,12 +68,10 @@ def createItem(request):
         item_description = request.POST.get("item_category")
         item_price = request.POST.get("item_price")
         item_image = request.POST.get("item_image")
-        new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, rental_price=item_price, picture=item_image)
+        new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, rental_price=item_price)
         new_item.save()
 
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            item = Item.objects.get(pk=new_item.id)
+        
         return redirect('index')
     return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 

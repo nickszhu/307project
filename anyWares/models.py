@@ -47,6 +47,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
     
+
 class Item(models.Model):
     def generate_upload_path(self, filename):
         return 'static/anyWares/media/itemImages%s' % filename
@@ -57,7 +58,7 @@ class Item(models.Model):
     rating = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     rental_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     date_listed = models.DateTimeField(auto_now=True)
-    picture = models.ImageField(upload_to='itemImages')
+    picture = models.ImageField(upload_to='itemImages', default='200x200.png')
     
     def __str__(self):
         return self.name
