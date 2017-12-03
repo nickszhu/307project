@@ -5,7 +5,8 @@ from anyWares.models import Item, Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from anyWares.forms import NewItemForm    
+from anyWares.forms import NewItemForm 
+from django.template import Context   
 
 def index(request):
     category_list = Category.objects.all()
