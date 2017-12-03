@@ -1,6 +1,6 @@
 from django import forms
-from anyWares.models import Category
+from anyWares.models import Item
+from django.forms import ModelForm
 
-class SearchBarForm(forms.Form):
-    #category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('name'))
-    search = forms.CharField(label='', max_length=100)
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()

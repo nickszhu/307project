@@ -1,11 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators import csrf
-from anyWares.models import Item, Category
+from anyWares.models import Item, Category, Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from anyWares.forms import SearchBarForm    
+from anyWares.forms import ImageUploadForm 
+from django.template import Context   
 
 def index(request):
     category_list = Category.objects.all()
@@ -41,7 +42,7 @@ def search(request):
         
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(item_list, 10)
+    paginator = Paginator(item_list, 20)
     try:
         items = paginator.page(page)
     except PageNotAnInteger:
@@ -51,12 +52,31 @@ def search(request):
     return render(request, 'anyWares/search.html', { 'items': items, 'item_found': item_found,'categsory_list': category_list })
     
 
-def itemView(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
+def itemView(request):
+    if request.method == 'GET':
+        item_id = request.GET.get('item_id', None)
+        item = Item.objects.get(pk=item_id)
     return render(request, 'anyWares/itemView.html', {'item': item})
 
 def createItem(request):
-    return render(request, 'anyWares/createItem.html')
+    category_list = Category.objects.all()
+    if request.method == 'POST':
+        item_name = request.POST.get("item_name")
+        category = request.POST.get("item_category")
+        item_category = category_list.get(category_name=category)
+        if request.user.is_authenticated():
+            item_owner = Profile.objects.get(user=request.user)
+        item_description = request.POST.get("item_category")
+        item_price = request.POST.get("item_price")
+        item_image = request.POST.get("item_image")
+        new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, rental_price=item_price, picture=item_image)
+        new_item.save()
+
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = Item.objects.get(pk=new_item.id)
+        return redirect('index')
+    return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
 def account(request):
     return render(request, 'anyWares/account.html')
@@ -78,4 +98,13 @@ def signup(request):
 
 
 def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'anyWares/login.html')
     return render(request, 'anyWares/login.html')
