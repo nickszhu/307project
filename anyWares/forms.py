@@ -2,5 +2,4 @@ from django import forms
 from anyWares.models import Category
 
 class NewItemForm(forms.Form):
-    #category = forms.ModelChoiceField(queryset=Category.objects.all().order_by('name'))
-    search = forms.CharField(label='', max_length=100)
+    item_name = forms.CharField(label='Item name', max_length=100)

@@ -58,8 +58,8 @@ def itemView(request, item_id):
 
 def createItem(request):
     category_list = Category.objects.all()
-    if request.method == 'POST':
-        form = NewItemForm(request.POST)
+    #if request.method == 'POST':
+        #form = NewItemForm(request.POST)
     return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
 def account(request):
