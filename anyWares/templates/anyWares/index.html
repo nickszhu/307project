@@ -17,7 +17,8 @@
   <!-- Viga font for logo -->
   <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet">
 
-  <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% load static %}
+  {% load static %}
+  <link href="{% static "anyWares/style.css" %}" rel="stylesheet" type="text/css"> 
 </head>
 
 <body>
@@ -47,14 +48,32 @@
         </form>
       </div>
       <div class="col-sm-3">
-        <ul class="nav justify-content-end" id="navictn">
+        {% if user.is_authenticated %}
+        <div id="hellonavi">
+          Hello, 
+        <span class="dropdown show">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{user}}
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">My Account</a>
+              <a class="dropdown-item" href="#">My Item</a>
+            </div>
+          </span>
+        <button type="submit" class="btn btn-outline-warning ml-2">Post</button>
+        </div>
+        
+        {% else %}
+          <ul class="nav justify-content-end" id="navictn">
           <li class="nav-item justify-content-end">
-            <a class="nav-link active" href="#">Login</a>
+            <a class="nav-link active" href="/anyWares/login">Login</a>
           </li>
           <li class="nav-item justify-content-end">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="/anyWares/signup">Register</a>
           </li>
         </ul>
+        {% endif %}
       </div>
 
     </div>
@@ -102,7 +121,7 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-sm-6 text-sm-right">
-            Create by:
+            Created by:
           </div>
           <div class="col-sm-6">
             Ryan Bass </br>
