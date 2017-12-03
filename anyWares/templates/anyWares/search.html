@@ -14,7 +14,10 @@
         <div class="card-body">
           <h4 class="card-title">{{ item.name }}</h4>
           <p class="card-text">{{ item.rental_price }}</p>
-          <a href="/anyWares/itemView/{{ item.id }}/" class="btn btn-warning">Detail</a>
+          <form class="form my-auto" action="/anyWares/itemView/" method="get">
+              <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
+              <button type="submit" class="btn btn-warning">View Item</button>
+          </form>
         </div>
       </div>
     </div>

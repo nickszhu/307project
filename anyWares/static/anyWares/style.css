@@ -77,7 +77,7 @@ footer {
 
 /* div for Links in header */
 .container{
-	max-width: 720px;
+	
 }
 
 .carousel{
@@ -93,6 +93,7 @@ footer {
 	height: auto;
 	transition: .5s ease;
 	backface-visibility: hidden;
+
   }
 
 .card-item-effect {

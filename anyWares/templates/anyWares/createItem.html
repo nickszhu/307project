@@ -4,7 +4,7 @@
 
 {% block mainbody %}
   <div class="newitem container">
-    <form class="my-4" action="/anyWares/createItem/" method="post">
+    <form class="my-4" action="/anyWares/createItem/" method="post">{% csrf_token %}
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="item_name">Name</label>
@@ -56,20 +56,20 @@
           <input type="text" class="form-control" id="item_city" name="item_city">
         </div>
         <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <input type="text" class="form-control" id="inputState">
+          <label for="item_state">State</label>
+          <input type="text" class="form-control" id="item_state" name="item_state">
         </div>
         <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+          <label for="item_zip">Zip</label>
+          <input type="text" class="form-control" id="item_zip" name="item_zip">
         </div>
       </div>
       <hr class="my-4">
 
 
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Discription</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <label for="item_description">Discription</label>
+        <textarea class="form-control" id="item_description" name="item_description" rows="3"></textarea>
       </div>
 
       <div class="form-group row">
