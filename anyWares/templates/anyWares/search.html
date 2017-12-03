@@ -1,7 +1,18 @@
-<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css">
-
-{% extends "./index.html" %}
-{% load static from staticfiles %}
+<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
+<section class="container">
+  {% for item in items %} {% if forloop.counter0 == 0 %}
+  <div class="row">
+    {% endif %} {% if forloop.counter0|divisibleby:3 %}</div>
+  <div class="row" style="margin-top:2rem">
+    {% endif %}
+    <div class="col-sm-4">
+      <div class="card bg-light text-center">
+        <div class="card-img-ctn">
+          <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+          <div class="card-item-effect">
+            <div class="text">{{ item.description }}</div>
+          </div>
+        </div>
 
 {% block mainbody %}
  <section class="container">
@@ -18,31 +29,39 @@
           <a href="/anyWares/itemView/{{ item.id }}/" class="btn btn-warning">Detail</a>
         </div>
       </div>
-        </div>
-      
-      {% if forloop.last %}</div>{% endif %}
-    {% endfor %}
+    </div>
+
+    {% if forloop.last %}</div>{% endif %} {% endfor %}
 </section>
 
-  {% if items.has_other_pages %}
-    <ul class="pagination">
-      {% if items.has_previous %}
-        <li><a href="?page={{ items.previous_page_number }}">&laquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&laquo;</span></li>
-      {% endif %}
-      {% for i in items.paginator.page_range %}
-        {% if items.number == i %}
-          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-        {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-      {% endfor %}
-      {% if items.has_next %}
-        <li><a href="?page={{ items.next_page_number }}">&raquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&raquo;</span></li>
-      {% endif %}
-    </ul>
+{% if items.has_other_pages %}
+<ul class="pagination">
+  {% if items.has_previous %}
+  <li>
+    <a href="?page={{ items.previous_page_number }}">&laquo;</a>
+  </li>
+  {% else %}
+  <li class="disabled">
+    <span>&laquo;</span>
+  </li>
+  {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
+  <li class="active">
+    <span>{{ i }}
+      <span class="sr-only">(current)</span>
+    </span>
+  </li>
+  {% else %}
+  <li>
+    <a href="?page={{ i }}">{{ i }}</a>
+  </li>
+  {% endif %} {% endfor %} {% if items.has_next %}
+  <li>
+    <a href="?page={{ items.next_page_number }}">&raquo;</a>
+  </li>
+  {% else %}
+  <li class="disabled">
+    <span>&raquo;</span>
+  </li>
   {% endif %}
-{% endblock %}
+</ul>
+{% endif %} {% endblock %}

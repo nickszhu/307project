@@ -61,6 +61,10 @@ def createItem(request):
         form = NewItemForm(request.POST)
     return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
+def account(request):
+    return render(request, 'anyWares/account.html')
+
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
