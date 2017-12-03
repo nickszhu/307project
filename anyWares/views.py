@@ -5,7 +5,7 @@ from anyWares.models import Item, Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from anyWares.forms import SearchBarForm    
+from anyWares.forms import NewItemForm    
 
 def index(request):
     category_list = Category.objects.all()
@@ -41,7 +41,7 @@ def search(request):
         
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(item_list, 10)
+    paginator = Paginator(item_list, 9)
     try:
         items = paginator.page(page)
     except PageNotAnInteger:
@@ -56,7 +56,10 @@ def itemView(request, item_id):
     return render(request, 'anyWares/itemView.html', {'item': item})
 
 def createItem(request):
-    return render(request, 'anyWares/createItem.html')
+    category_list = Category.objects.all()
+    if request.method == 'POST':
+        form = NewItemForm(request.POST)
+    return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
 def signup(request):
     if request.method == 'POST':
