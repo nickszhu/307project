@@ -2,7 +2,7 @@
 <link href="{% static " anyWares/style.css " %}"
   rel="stylesheet" type="text/css"> {% block mainbody %}
 <div class="container">
-  <form method="post">{% csrf_token %}
+  <form class="main-form my-5" method="post">{% csrf_token %}
     <div class="form-group row">
       <label for="username" class="col-md-3 col-form-label">Username</label>
       <div class="col-md-9">

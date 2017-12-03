@@ -55,13 +55,14 @@
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{user}}
             </a>
-          
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="#">My Account</a>
               <a class="dropdown-item" href="#">My Item</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
             </div>
           </span>
-        <button type="submit" class="btn btn-outline-warning ml-2">Post</button>
+        <a href="/anyWares/createItem" class="btn btn-outline-warning ml-2">Post</a>
         </div>
         
         {% else %}
@@ -82,7 +83,7 @@
 
   {% block mainbody %}
   <div class="container">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleControls" class="carousel slide my-5" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img class="d-block w-100" src="..." alt="First slide">
