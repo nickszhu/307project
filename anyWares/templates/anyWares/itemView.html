@@ -1,10 +1,29 @@
-<link href="../../../static/anyWares/style.css" rel="stylesheet" type="text/css">
+<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css">
 
 {% extends "./index.html" %}
 {% load static from staticfiles %}
 
 {% block mainbody %}
-<section class="mainContent">
-  {{ item }}
-</section>
+<div class="container">
+<div class="row">
+  <div class="col-md-4">
+      <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+  </div>
+  <div class="col-md-8">
+    <div>{{ item.name }}</div>
+    <div>by {{item.owner_ID}} 
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+    </div>
+    <div>{{ item.rental_price }}</div>
+    <div>{{ item.rating }}</div>
+    <div>{{ item.date_listed }}</div>
+    <div> {{ item.description }}</div>
+
+  </div>
+</div>
+</div>
 {% endblock %}

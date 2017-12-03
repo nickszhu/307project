@@ -58,6 +58,10 @@ def itemView(request, item_id):
 def createItem(request):
     return render(request, 'anyWares/createItem.html')
 
+def account(request):
+    return render(request, 'anyWares/account.html')
+
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

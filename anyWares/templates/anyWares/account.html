@@ -1,0 +1,81 @@
+<link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
+<div class="container">
+  <form class="my-4">
+    <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" readonly class="form-control-plaintext" id="username" value="email@example.com">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="firstname" class="col-sm-2 col-form-label">Firstname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="firstname" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="lastname" class="col-sm-2 col-form-label">Lastname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="lastname" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="rating" class="col-sm-2 col-form-label">Rating</label>
+      <div class="col-sm-10">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="phone" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="email" placeholder="Password">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Street, Avenue">
+    </div>
+
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <input type="text" class="form-control" id="inputState">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+    <div class="form-group row my-4">
+      <label for="note" class="col-sm-2 col-form-label">Note</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="note" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-warning float-right">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

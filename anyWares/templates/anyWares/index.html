@@ -12,34 +12,41 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
     crossorigin="anonymous">
 
+  <!-- icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Viga font for logo -->
+  <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet">
 
   <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% load static %}
 </head>
 
 <body>
-  <header>
+  <!-- <div class="mainctn"> -->
+  <header class="sticky-top">
     <!-- This is the header content. It contains Logo and links -->
-    <div class="row">
-      <div class="col-md-3">
-        <div id="logo">anyWares</div>
+    <div class="row" style="height:70px;">
+      <div class="col-sm-3">
+        <div id="logoctn">
+          <a href="/anyWares" id="logo">anyWares</a>
+        </div>
       </div>
-      <div class="col-md-6">
-        <form class="form" action="/anyWares/search/" method="get">
-          
+      <div class="col-sm-6" id="searchbar">
+        <form class="form my-auto" action="/anyWares/search/" method="get">
           <div class="input-group">
             <div class="input-group-btn">
-                <select id="category_select" name="category_select" class="form-control input-group-addon btn btn-secondary">
-                    <option>Category</option>
-                    <option>Home Goods</option>
-                    <option>Electronics</option>
-                </select>
-              </div>    
-            <input type="text" id="search_box" name="search_box" class="form-control" aria-label="Text input with dropdown button">
-            <button type="submit" class="input-group-addon btn btn-primary">Search</button>
+              <select class="form-control input-group-addon btn btn-light">
+                <option>Catagory</option>
+                {% for catagory in catagory_list %}
+                <option>{{ catagory.category_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <input type="text" id="search_box" name="search_box" class="form-control">
+            <button type="submit" class="input-group-addon btn btn-warning">Search</button>
           </div>
         </form>
       </div>
-      <div class="col-md-3 align-middle">
+      <div class="col-sm-3">
         <ul class="nav justify-content-end" id="navictn">
           <li class="nav-item justify-content-end">
             <a class="nav-link active" href="#">Login</a>
@@ -55,37 +62,65 @@
 
 
   {% block mainbody %}
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="..." alt="First slide">
+  <div class="container">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="..." alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="..." alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="..." alt="Third slide">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="..." alt="Second slide">
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  {% endblock %}
+
+
+  <!-- footer -->
+  <footer class="my-4">
+    <hr class="mb-3">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="color:#113358;">About</a>
+          </li>
+        </ul>
       </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="..." alt="Third slide">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-sm-6 text-sm-right">
+            Create by:
+          </div>
+          <div class="col-sm-6">
+            Ryan Bass </br>
+            Shihang Zhu
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        Follow us on:
+        <a href="https://github.com/nickszhu/Anywares" style="color:#113358;">
+          <i class="fa fa-github"></i>
+        </a>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-  {% endblock %}
-  <footer>
-    This is footer;
   </footer>
 
-
+<!-- </div> -->
   <!-- Optional JavaScript -->
-  <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default;comfortaa:n3,n4:default;londrina-shadow:n4:default;amaranth:n4:default;viga:n4:default.js"
-    type="text/javascript"></script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
