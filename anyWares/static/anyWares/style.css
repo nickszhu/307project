@@ -130,7 +130,7 @@ footer {
 
 
   .spybox{
-	  
+	  position: relative;
 	  height: 480px;
 	  overflow-y: scroll;
   }

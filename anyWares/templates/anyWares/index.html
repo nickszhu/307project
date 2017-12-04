@@ -15,10 +15,8 @@
   <!-- icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Viga font for logo -->
-  <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet">
-
-  {% load static %}
-  <link href="{% static "anyWares/style.css" %}" rel="stylesheet" type="text/css"> 
+  <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet"> {% load static %}
+  <link href="{% static " anyWares/style.css " %}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -35,13 +33,13 @@
         <form class="form my-auto" action="/anyWares/search/" method="get">
           <div class="input-group">
             <div class="input-group-btn">
-                <select id="category_select" name="category_select" class="form-control input-group-addon btn btn-secondary">
-                    <option>Category</option>
-                    <option>Home Goods</option>
-                    <option>Electronics</option>
-                    <option>Entertainment</option>
-                </select>
-              </div>    
+              <select id="category_select" name="category_select" class="form-control input-group-addon btn btn-secondary">
+                <option>Category</option>
+                <option>Home Goods</option>
+                <option>Electronics</option>
+                <option>Entertainment</option>
+              </select>
+            </div>
             <input type="text" id="search_box" name="search_box" class="form-control" aria-label="Text input with dropdown button">
             <button type="submit" class="input-group-addon btn btn-primary">Search</button>
           </div>
@@ -50,8 +48,8 @@
       <div class="col-sm-3">
         {% if user.is_authenticated %}
         <div id="hellonavi">
-          Hello, 
-        <span class="dropdown show">
+          Hello,
+          <span class="dropdown show">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{user}}
             </a>
@@ -62,11 +60,11 @@
               <a class="dropdown-item" href="/anyWares/logout">Logout</a>
             </div>
           </span>
-        <a href="/anyWares/createItem" class="btn btn-outline-warning ml-2">Post</a>
+          <a href="/anyWares/createItem" class="btn btn-outline-warning ml-2">Post</a>
         </div>
-        
+
         {% else %}
-          <ul class="nav justify-content-end" id="navictn">
+        <ul class="nav justify-content-end" id="navictn">
           <li class="nav-item justify-content-end">
             <a class="nav-link active" href="/anyWares/login">Login</a>
           </li>
@@ -143,7 +141,7 @@
     </div>
   </footer>
 
-<!-- </div> -->
+  <!-- </div> -->
   <!-- Optional JavaScript -->
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
