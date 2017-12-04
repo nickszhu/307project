@@ -1,62 +1,102 @@
-
-{% extends "./index.html" %} 
-{% load static from staticfiles %} 
-
-{% block mainbody %}
- <section class="container">
-   {% if not item_found %}Could not find any items with that search, here are our most popular items.{% endif %}
-    {% for item in items %}
-      {% if forloop.counter0 == 0 %}<div class="row">{% endif %}
-      {% if forloop.counter0|divisibleby:3 %}</div><div class="row" style="margin-top:2rem">{% endif %} 
-        <div class="col-sm-4">
-          <div class="card bg-light text-center">
-        <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}" style="height:15rem">
+ {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
+<section class="container">
+  {% if not item_found %}
+  <div style="color:red;">Could not find any items with that search, here are our most popular items.</div>
+  {% endif %} 
+  
+  
+{% load modulo %}
+  <div class="row" style="margin-top:1rem">
+    <div class="col-sm-4">
+      {% for item in items %} 
+      {% if forloop.counter0|modulo:3 == 0 %}
+      <div class="card bg-light text-center mt-4">
+        <div class="card-img-ctn">
+          <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+          <div class="card-item-effect">{{ item.description }}</div>
+        </div>
         <div class="card-body">
           <h4 class="card-title">{{ item.name }}</h4>
-          <p class="card-text">{{ item.rental_price }}</p>
+          <p class="card-text">${{ item.rental_price }}</p>
           <form class="form my-auto" action="/anyWares/itemView/" method="get">
-              <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
-              <button type="submit" class="btn btn-warning">View Item</button>
+            <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
+            <button type="submit" class="btn btn-warning">View Item</button>
           </form>
         </div>
       </div>
+      {% endif %} 
+      {% endfor %}
     </div>
-
-    {% if forloop.last %}</div>{% endif %} {% endfor %}
+    <div class="col-sm-4">
+        {% for item in items %} 
+        {% if forloop.counter0|modulo:3 == 1 %}
+        <div class="card bg-light text-center mt-4">
+          <div class="card-img-ctn">
+            <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+            <div class="card-item-effect">{{ item.description }}</div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ item.name }}</h4>
+            <p class="card-text">${{ item.rental_price }}</p>
+            <form class="form my-auto" action="/anyWares/itemView/" method="get">
+              <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
+              <button type="submit" class="btn btn-warning">View Item</button>
+            </form>
+          </div>
+        </div>
+        {% endif %} 
+        {% endfor %}
+    </div>
+    <div class="col-sm-4">
+        {% for item in items %} 
+        {% if forloop.counter0|modulo:3 == 2 %}
+        <div class="card bg-light text-center mt-4">
+          <div class="card-img-ctn">
+            <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+            <div class="card-item-effect">{{ item.description }}</div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ item.name }}</h4>
+            <p class="card-text">${{ item.rental_price }}</p>
+            <form class="form my-auto" action="/anyWares/itemView/" method="get">
+              <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
+              <button type="submit" class="btn btn-warning">View Item</button>
+            </form>
+          </div>
+        </div>
+        {% endif %} 
+        {% endfor %}
+    </div>
 </section>
 
 {% if items.has_other_pages %}
-  <ul class="pagination">
+<ul class="pagination">
   {% if items.has_previous %}
-    <li>
-      <a href="?page={{ items.previous_page_number }}">&laquo;</a>
-    </li>
+  <li>
+    <a href="?page={{ items.previous_page_number }}">&laquo;</a>
+  </li>
   {% else %}
-    <li class="disabled">
-      <span>&laquo;</span>
-    </li>
-  {% endif %} 
-  {% for i in items.paginator.page_range %} 
-    {% if items.number == i %}
-    <li class="active">
-      <span>{{ i }}
-        <span class="sr-only">(current)</span>
-      </span>
-    </li>
-    {% else %}
-    <li>
-      <a href="?page={{ i }}">{{ i }}</a>
-    </li>
-    {% endif %} 
-  {% endfor %} 
-  {% if items.has_next %}
-    <li>
-      <a href="?page={{ items.next_page_number }}">&raquo;</a>
-    </li>
+  <li class="disabled">
+    <span>&laquo;</span>
+  </li>
+  {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
+  <li class="active">
+    <span>{{ i }}
+      <span class="sr-only">(current)</span>
+    </span>
+  </li>
   {% else %}
-    <li class="disabled">
-      <span>&raquo;</span>
-    </li>
+  <li>
+    <a href="?page={{ i }}">{{ i }}</a>
+  </li>
+  {% endif %} {% endfor %} {% if items.has_next %}
+  <li>
+    <a href="?page={{ items.next_page_number }}">&raquo;</a>
+  </li>
+  {% else %}
+  <li class="disabled">
+    <span>&raquo;</span>
+  </li>
   {% endif %}
-  </ul>
+</ul>
 {% endif %} {% endblock %}

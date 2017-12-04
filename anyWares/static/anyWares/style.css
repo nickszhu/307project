@@ -11,8 +11,7 @@ html{
 body {
 	position:relative;  
     width:100%;
-    min-height:100%; 
-    /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/  
+    min-height:100%;  
     padding-bottom: 100px;  
     box-sizing: border-box;
 	background-color:white;
@@ -90,10 +89,6 @@ footer {
 	margin: auto;
 }
 
-.container{
-	max-width: 960px!important;
-}
-
 .carousel{
 	height: 500px;
     text-align: center;
@@ -107,7 +102,6 @@ footer {
 	height: auto;
 	transition: .5s ease;
 	backface-visibility: hidden;
-
   }
 
 .card-item-effect {
