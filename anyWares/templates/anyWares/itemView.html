@@ -3,12 +3,12 @@
 
 {% block mainbody %}
 <div class="container">
-<div class="row">
+<div class="row mt-5">
   <div class="col-md-4">
       <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
   </div>
   <div class="col-md-8">
-    <div>{{ item.name }}</div>
+    <div><h2>{{ item.name }}</h2></div>
     <div>by {{item.owner_ID}} 
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -16,10 +16,11 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
     </div>
-    <div>{{ item.rental_price }}</div>
-    <div>{{ item.rating }}</div>
+    <br/>
+    <div>${{ item.rental_price }}</div>
     <div>{{ item.date_listed }}</div>
-    <div> {{ item.description }}</div>
+    <br/>
+    <div class="font-italic">{{ item.description }}</div>
 
   </div>
 </div>
