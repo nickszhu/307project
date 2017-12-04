@@ -8,10 +8,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template import Context   
 from django.contrib.auth.models import User
 from django.contrib import messages
+import random
+import collections
 
 def index(request):
     category_list = Category.objects.all()
-    return render(request, 'anyWares/index.html', {'category_list': category_list})
+    item_list = Item.objects.all()
+    featured_items = []
+    num_featured_items = range(1,3)
+    for i in num_featured_items:
+        random_index = random.randint(0, item_list.count() - 1)
+        featured_items.append(item_list[random_index]) 
+    return render(request, 'anyWares/index.html', {'category_list': category_list, 'featured_items': item_list})
+
+
 
 def search(request):
     item_list = Item.objects.all()
@@ -31,13 +41,6 @@ def search(request):
             if item_list.count() > 0:
                 item_found = True
 
-        #if search_category != None:
-        #    category = category_list.filter(category_name__icontains=search_category)
-        #    if category.count() > 0: 
-        #        item_list = item_list.get(category_ID=category)
-
-        
-
     if not item_found:
         item_list = Item.objects.all() 
         
@@ -51,7 +54,25 @@ def search(request):
     except EmptyPage:
         items = paginator.page(paginator.num_pages)   
     return render(request, 'anyWares/search.html', { 'items': items, 'item_found': item_found,'categsory_list': category_list })
-    
+
+def myitems(request):
+    item_found = False
+    if request.method == 'GET':
+        current_user = request.user
+        item_list = Item.objects.filter(owner_ID=current_user.profile)
+        if item_list.count() > 0:
+            item_found = True
+        
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(item_list, 20)
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)   
+    return render(request, 'anyWares/myitems.html', { 'items': items, 'item_found': item_found }) 
 
 def itemView(request):
     if request.method == 'GET':
@@ -78,6 +99,19 @@ def createItem(request):
     return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
 def account(request):
+    if request.method == 'POST':
+        current_user = request.user
+        current_user.profile.first_name = request.POST.get('first_name')
+        current_user.profile.last_name = request.POST.get('last_name')
+        current_user.profile.address = request.POST.get('address')
+        current_user.profile.address2 = request.POST.get('address2')
+        current_user.profile.city = request.POST.get('city')
+        current_user.profile.state = request.POST.get('state')
+        current_user.profile.postal_code = request.POST.get('postal_code')
+        current_user.profile.country = request.POST.get('country')
+        current_user.profile.phone = request.POST.get('phone')
+        current_user.profile.email = request.POST.get('email')
+        current_user.save()
     return render(request, 'anyWares/account.html')
 
 def about(request):
@@ -97,3 +131,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
+
+def edititem(request):
+    return render(request, 'anyWares/edititem.html')
