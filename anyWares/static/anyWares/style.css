@@ -127,3 +127,14 @@ footer {
  .checked{
 	  color:orange;
   }
+
+
+  .spybox{
+	  
+	  height: 480px;
+	  overflow-y: scroll;
+  }
+
+  .h480{
+	height: 480px;
+  }

@@ -78,6 +78,8 @@ def createItem(request):
 def account(request):
     return render(request, 'anyWares/account.html')
 
+def about(request):
+    return render(request, 'anyWares/about.html')
 
 def signup(request):
     if request.method == 'POST':
