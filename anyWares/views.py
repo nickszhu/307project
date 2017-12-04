@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 import random
 import collections
+from django.core.urlresolvers import reverse
 
 def index(request):
     category_list = Category.objects.all()
@@ -93,9 +94,10 @@ def createItem(request):
         item_image = request.POST.get("item_image")
         new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, rental_price=item_price)
         new_item.save()
+        new_item.refresh_from_db()
 
-        
-        return redirect('index')
+        #return redirect('index')
+        return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
     return render(request, 'anyWares/createItem.html', {'category_list': category_list})
 
 def account(request):
