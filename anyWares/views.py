@@ -3,9 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators import csrf
 from anyWares.models import Item, Category, Profile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.template import Context   
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def index(request):
     category_list = Category.objects.all()
@@ -85,25 +87,13 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+            user = form.save()
+            user.refresh_from_db()
+            user.save()
             raw_password = form.cleaned_data.get('password1')
-            user= authenticate(username=username, password=raw_password)
+            user= authenticate(username=user.username, password=raw_password)
             login(request, user)
             return redirect('index')
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
-
-
-def login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('index')
-        else:
-            return render(request, 'anyWares/login.html')
-    return render(request, 'anyWares/login.html')
