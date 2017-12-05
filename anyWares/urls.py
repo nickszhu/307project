@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^account/$', views.account, name='account'),
     url(r'^about$', views.about, name="about"),
     url(r'^myitems$', views.myitems, name="myitems"),
-    url(r'^edititem/$', views.edititem, name="edititem")
+    url(r'^edititem/$', views.edititem, name="edititem"),
+    url(r'^get_search_suggestions/', views.get_search_suggestions, name="get_search_suggestions"),
 ]

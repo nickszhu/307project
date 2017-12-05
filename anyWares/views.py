@@ -8,10 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template import Context   
 from django.contrib.auth.models import User
 from django.contrib import messages
-import random
-import collections
+import random, json, requests, collections
 from django.core.urlresolvers import reverse
-import requests
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from anyWares.forms import NewItemForm
@@ -89,8 +87,11 @@ def createItem(request):
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('index')
+            new_item = form.save(commit=False)
+            new_item.user = Profile.objects.get(user=request.user)
+            new_item.save()
+            new_item.refresh_from_db()
+            return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
     else:
         form = NewItemForm()
     return render(request, 'anyWares/createItem.html', {'form': form})
@@ -170,3 +171,19 @@ def signup(request):
 
 def edititem(request):
     return render(request, 'anyWares/edititem.html')
+
+def get_search_suggestions(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        items = Item.objects.filter(name__icontains = q)[:20]
+        results = []
+        for item in items:
+            item_json = {}
+            item_json['id'] = item.id
+            item_json['label'] = item.name
+            item_json['value'] = item.name
+            results.append(item_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/'
