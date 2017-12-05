@@ -1,3 +1,4 @@
 mysite/*.pyc
 anyWares/*.pyc
 anyWares/migrations/*.pyc
+**/*.pyc
