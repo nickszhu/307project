@@ -123,3 +123,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'anyWares/static/anyWares/media')
 MEDIA_URL = '/anyWares/media/'
 
 LOGIN_REDIRECT_URL = '/anyWares/'
+
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LdQajsUAAAAAP4-ScOhojGEYJpXLyUqxqwH1HrY'

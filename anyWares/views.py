@@ -1,3 +1,7 @@
+import urllib
+import urllib2
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators import csrf
@@ -13,6 +17,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from anyWares.forms import NewItemForm
+
 
 def index(request):
     category_list = Category.objects.all()
@@ -87,11 +92,28 @@ def createItem(request):
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
         if form.is_valid():
-            new_item = form.save(commit=False)
-            new_item.owner_ID = Profile.objects.get(user=request.user)
-            new_item.save()
-            new_item.refresh_from_db()
-            return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
+            
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.urlencode(values)
+            req = urllib2.Request(url, data)
+            response = urllib2.urlopen(req)
+            result = json.load(response)
+            ''' End reCAPTCHA validation '''
+
+            if result['success']:
+                new_item = form.save(commit=False)
+                new_item.owner_ID = Profile.objects.get(user=request.user)
+                new_item.save()
+                new_item.refresh_from_db()
+                return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
+            else:
+                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
     else:
         form = NewItemForm()
     return render(request, 'anyWares/createItem.html', {'form': form})
@@ -158,13 +180,30 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()
-            user.save()
-            raw_password = form.cleaned_data.get('password1')
-            user= authenticate(username=user.username, password=raw_password)
-            login(request, user)
-            return redirect('index')
+
+            ''' Begin reCAPTCHA validation '''
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            data = urllib.urlencode(values)
+            req = urllib2.Request(url, data)
+            response = urllib2.urlopen(req)
+            result = json.load(response)
+            ''' End reCAPTCHA validation '''
+
+            if result['success']:
+                user = form.save()
+                user.refresh_from_db()
+                user.save()
+                raw_password = form.cleaned_data.get('password1')
+                user= authenticate(username=user.username, password=raw_password)
+                login(request, user)
+                return redirect('index')
+            else:
+                messages.error(request, 'Invalid reCAPTCHA. Please try again.')
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
