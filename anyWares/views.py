@@ -88,7 +88,7 @@ def createItem(request):
         form = NewItemForm(request.POST, request.FILES)
         if form.is_valid():
             new_item = form.save(commit=False)
-            new_item.user = Profile.objects.get(user=request.user)
+            new_item.owner_ID = Profile.objects.get(user=request.user)
             new_item.save()
             new_item.refresh_from_db()
             return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
@@ -187,3 +187,4 @@ def get_search_suggestions(request):
     else:
         data = 'fail'
     mimetype = 'application/'
+    return HttpResponse(data, mimetype)
