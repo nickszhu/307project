@@ -7,10 +7,9 @@ from django.contrib.auth.models import User
 class NewItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = [
+        fields = (
                 'name', 
-                'category_ID', 
-                'owner_ID', 
+                'category_ID',
                 'description', 
                 'rental_price', 
                 'start_date', 
@@ -22,9 +21,4 @@ class NewItemForm(ModelForm):
                 'postal_code', 
                 'country', 
                 'image'
-            ]
-
-class SignUpForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password1', 'password2')
+            )

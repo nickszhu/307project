@@ -1,175 +1,83 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 {% extends "./index.html" %} 
 {% load static from staticfiles %} 
+{% load widget_tweaks %}
 
 {% block mainbody %}
 
-  <form method="post" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Post</button>
+<div class="newitem container">
+  <form class="main-form my-5" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="{{ form.name.id_for_label }}">Name</label>
+        {{ form.name |add_class:"form-control"}}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="{{ form.category_ID.id_for_label }}">Category</label>
+        {{ form.category_ID |add_class:"form-control"}}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="{{ form.rental_price.id_for_label }}">Price</label>
+        {{ form.rental_price |add_class:"form-control"}}
+      </div>
+      <div class="form-group col-md-4">
+        <label for="{{ form.start_date.id_for_label }}">Start Date</label>
+        {{ form.start_date|add_class:"form-control"|attr:"type:date"}}
+      </div>
+      <div class="form-group col-md-4">
+        <label for="{{ form.end_date.id_for_label }}">End Date</label>
+        {{ form.end_date |add_class:"form-control"}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="{{ form.image.id_for_label }}">Image</label>
+      {{ form.image |add_class:"form-control-file"|attr:"type:file"}}
+    </div>
+    <hr class="my-4">
+    <div class="form-group">
+      <label for="{{ form.address.id_for_label }}">Address</label>
+      {{ form.address |add_class:"form-control"}}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.address2.id_for_label }}">Address 2</label>
+      {{ form.address2 |add_class:"form-control"}}
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="{{ form.city.id_for_label }}">City</label>
+        {{ form.city |add_class:"form-control"}}
+      </div>
+      <div class="form-group col-md-4">
+        <label for="{{ form.state.id_for_label }}">State</label>
+        {{ form.state |add_class:"form-control"}}
+      </div>
+      <div class="form-group col-md-2">
+        <label for="{{ form.postal_code.id_for_label }}">Postal Code</label>
+        {{ form.postal_code |add_class:"form-control"}}
+      </div>
+      <div class="form-group col-md-2">
+        <label for="{{ form.country.id_for_label }}">Country</label>
+        {{ form.country |add_class:"form-control"}}
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="form-group">
+      <label for="{{ form.description.id_for_label }}">Description</label>
+      {{ form.description |add_class:"form-control"}}
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-auto mx-auto">
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary float-right">Post</button>
+      </div>
+    </div>
   </form>
-  <!--
-  <div class="newitem container">
-    <form class="main-form my-5" method="post" enctype="multipart/form-data">{% csrf_token %}
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="item_name">Name</label>
-          <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Item's name">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="item_category">Category</label>
-          <select id="item_category" name="item_category" class="form-control">
-              <option selected>Choose Category</option>
-              {% for category in category_list %}
-                <option>{{ category.category_name }}</option>
-              {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="item_price">Price</label>
-          <input type="number" class="form-control" id="item_price" name="item_price">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="item_fromdate">From</label>
-          <input type="date" class="form-control" id="item_fromdate" name="item_fromdate">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="item_todate">To</label>
-          <input type="date" class="form-control" id="item_todate" name="item_todate">
-        </div>
-      </div>
+</div>
 
-      <div class="form-group">
-        <label for="item_image">Item Image</label>
-        <input type="file" class="form-control-file" id="item_image" name="item_image">
-      </div>
-
-      <hr class="my-4">
-      <div class="form-group">
-        <label for="item_address_1">Address</label>
-        <input type="text" class="form-control" id="item_address_1" name="item_address_1" placeholder="Street, Avenue">
-      </div>
-
-      <div class="form-group">
-        <label for="item_address_2">Address 2</label>
-        <input type="text" class="form-control" id="item_address_2" name="item_address_2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="item_city">City</label>
-          <input type="text" class="form-control" id="item_city" name="item_city">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="item_state">State</label>
-          <input type="text" class="form-control" id="item_state" name="item_state">
-        </div>
-        <div class="form-group col-md-2">
-          <label for="item_zip">Zip</label>
-          <input type="text" class="form-control" id="item_zip" name="item_zip">
-        </div>
-      </div>
-      <hr class="my-4">
-
-
-      <div class="form-group">
-        <label for="item_description">Description</label>
-        <textarea class="form-control" id="item_description" name="item_description" rows="3"></textarea>
-      </div>
-
-      <div class="form-group row">
-          <div class="col-sm-auto mx-auto">
-            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-          </div>
-        </div>
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary float-right">Post</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-
-  <div class="newitem container">
-    <form class="main-form my-5" method="post" enctype="multipart/form-data">{% csrf_token %}
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          {{ form.name.errors }}
-          <label for="{{ form.name.id_for_label }}">Name</label>
-          {{ form.name }}
-        </div>
-        <div class="form-group col-md-6">
-          {{ form.category_ID.errors }}
-          <label for="{{ form.category_ID.id_for_label }}">Category</label>
-          {{ form.category_ID }}
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          {{ form.rental_price.errors }}
-          <label for="{{ form.rental_price.id_for_label }}">Price</label>
-          {{ form.rental_price }}
-        </div>
-        <div class="form-group col-md-4">
-          <label for="{{ form.start_date.id_for_label }}">From</label>
-          {{ form.start_date.id_for_label }}
-        </div>
-        <div class="form-group col-md-4">
-          <label for="item_todate">To</label>
-          <input type="date" class="form-control" id="item_todate" name="item_todate">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="item_image">Item Image</label>
-        <input type="file" class="form-control-file" id="item_image" name="item_image">
-      </div>
-
-      <hr class="my-4">
-      <div class="form-group">
-        <label for="item_address_1">Address</label>
-        <input type="text" class="form-control" id="item_address_1" name="item_address_1" placeholder="Street, Avenue">
-      </div>
-
-      <div class="form-group">
-        <label for="item_address_2">Address 2</label>
-        <input type="text" class="form-control" id="item_address_2" name="item_address_2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="item_city">City</label>
-          <input type="text" class="form-control" id="item_city" name="item_city">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="item_state">State</label>
-          <input type="text" class="form-control" id="item_state" name="item_state">
-        </div>
-        <div class="form-group col-md-2">
-          <label for="item_zip">Zip</label>
-          <input type="text" class="form-control" id="item_zip" name="item_zip">
-        </div>
-      </div>
-      <hr class="my-4">
-
-
-      <div class="form-group">
-        <label for="item_description">Description</label>
-        <textarea class="form-control" id="item_description" name="item_description" rows="3"></textarea>
-      </div>
-
-      <div class="form-group row">
-          <div class="col-sm-auto mx-auto">
-            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-          </div>
-        </div>
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary float-right">Post</button>
-        </div>
-      </div>
-    </form>
-  </div>
--->
 {% endblock %}

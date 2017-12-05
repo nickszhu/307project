@@ -46,6 +46,7 @@
           </div>
         </form>
       </div>
+      
       <div class="col-sm-3">
         {% if user.is_authenticated %}
         <div id="hellonavi">
@@ -172,6 +173,22 @@
       // setTimeout(function () {}, 800 ));
     });
   </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+  
+    <script type="text/javascript">
+      $(document).ready(function(){
+        
+        var location_input = $('input[id="search_box"]')
+        location_input.autocomplete({
+          source: "",
+          minLength: 2,
+        });
+        console.log("test");
+      });
+    </script>
+  
 </body>
 
 </html>
