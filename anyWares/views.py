@@ -11,6 +11,10 @@ from django.contrib import messages
 import random
 import collections
 from django.core.urlresolvers import reverse
+import requests
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from anyWares.forms import NewItemForm
 
 def index(request):
     category_list = Category.objects.all()
@@ -82,23 +86,53 @@ def itemView(request):
     return render(request, 'anyWares/itemView.html', {'item': item})
 
 def createItem(request):
+    if request.method == 'POST':
+        form = NewItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = NewItemForm()
+    return render(request, 'anyWares/createItem.html', {'form': form})
+    '''
     category_list = Category.objects.all()
     if request.method == 'POST':
-        item_name = request.POST.get("item_name")
-        category = request.POST.get("item_category")
-        item_category = category_list.get(category_name=category)
-        if request.user.is_authenticated():
-            item_owner = Profile.objects.get(user=request.user)
-        item_description = request.POST.get("item_category")
-        item_price = request.POST.get("item_price")
-        item_image = request.POST.get("item_image")
-        new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, rental_price=item_price)
-        new_item.save()
-        new_item.refresh_from_db()
 
-        #return redirect('index')
-        return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
-    return render(request, 'anyWares/createItem.html', {'category_list': category_list})
+        recaptcha_response = request.POST.get('g-recaptcha=response')
+        data = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json
+
+        if result['success']:
+            return HttpResponse("test")
+            form = NewItemForm(request.POST, request.FILES)
+            if form.is_valid():
+                new_item = form.save()
+                new_item.refresh_from_db()
+                return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
+            
+            item_name = request.POST.get("item_name")
+            category = request.POST.get("item_category")
+            item_category = category_list.get(category_name=category)
+            if request.user.is_authenticated():
+                item_owner = Profile.objects.get(user=request.user)
+            item_description = request.POST.get("item_category")
+            item_price = request.POST.get("item_price")
+            if request.FILES['item_image']:
+                new_image = request.FILES['item_image']
+                fs = FileSystemStorage()
+                fs.save(new_image.name, new_image)
+            new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, image=new_image, rental_price=item_price)
+            new_item.save()
+            new_item.refresh_from_db()
+            messages.success(request, 'Successfully added new item!')
+            
+            
+    return render(request, 'anyWares/createItem.html', {'category_list': category_list}, {'form': form})
+'''
 
 def account(request):
     if request.method == 'POST':

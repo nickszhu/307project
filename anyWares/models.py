@@ -44,10 +44,17 @@ class Item(models.Model):
     category_ID = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     owner_ID = models.ForeignKey(Profile, null=True, on_delete=models.CASCADE)
     description = models.CharField(null=True, max_length=100)
-    rating = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     rental_price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    start_date = models.DateTimeField(auto_now=False)
+    end_date = models.DateTimeField(auto_now=False)
+    address = models.CharField(null=True, max_length=50)
+    address2 = models.CharField(null=True, max_length=50)
+    city = models.CharField(null=True, max_length=20)
+    state = models.CharField(null=True, max_length=20)
+    postal_code = models.CharField(null=True, max_length=20)
+    country = models.CharField(null=True, max_length=20)
     date_listed = models.DateTimeField(auto_now=True)
-    picture = models.ImageField(upload_to='itemImages', default='200x200.png')
+    image = models.ImageField(upload_to='itemImages', default='200x200.png')
     
     def __str__(self):
         return self.name
