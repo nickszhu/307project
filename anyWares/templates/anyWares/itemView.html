@@ -23,6 +23,9 @@
     <div class="font-italic">{{ item.description }}</div>
 
   </div>
+  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
+  &markers=color:blue%7Clabel:S%7C{{ item.address }}{{ item.city }}{{ item.state }}{{ item.postal_code }}{{ item.country }}
+  &key=AIzaSyAj5Asx5Ub8uaF_1gdje8rNa4-l1TbSEX0">
 </div>
 </div>
 {% endblock %}
