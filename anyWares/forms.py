@@ -7,7 +7,22 @@ from django.contrib.auth.models import User
 class NewItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'category_ID', 'owner_ID', 'description', 'rating']
+        fields = [
+                'name', 
+                'category_ID', 
+                'owner_ID', 
+                'description', 
+                'rental_price', 
+                'start_date', 
+                'end_date', 
+                'address', 
+                'address2', 
+                'city', 
+                'state', 
+                'postal_code', 
+                'country', 
+                'image'
+            ]
 
 class SignUpForm(UserCreationForm):
     class Meta:
