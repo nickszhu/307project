@@ -12,7 +12,7 @@
       {% if forloop.counter0|modulo:3 == 0 %}
       <div class="card bg-light text-center mt-4">
         <div class="card-img-ctn">
-          <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+          <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
           <div class="card-item-effect">{{ item.description }}</div>
         </div>
         <div class="card-body">
@@ -32,7 +32,7 @@
         {% if forloop.counter0|modulo:3 == 1 %}
         <div class="card bg-light text-center mt-4">
           <div class="card-img-ctn">
-            <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+            <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
             <div class="card-item-effect">{{ item.description }}</div>
           </div>
           <div class="card-body">
@@ -52,7 +52,7 @@
         {% if forloop.counter0|modulo:3 == 2 %}
         <div class="card bg-light text-center mt-4">
           <div class="card-img-ctn">
-            <img class="card-img-top" src="{% static item.picture.url %}" alt="{{ item.picture }}">
+            <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
             <div class="card-item-effect">{{ item.description }}</div>
           </div>
           <div class="card-body">
