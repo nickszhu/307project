@@ -182,11 +182,15 @@
         
         var location_input = $('input[id="search_box"]')
         location_input.autocomplete({
-          source: "",
-          minLength: 2,
+          source: "/anyWares/api/get_search_suggestions/",
+          minLength: 1,
         });
         console.log("test");
       });
+      jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+          var ul = this.menu.element;
+          ul.outerWidth(this.element.outerWidth());
+        }
     </script>
   
 </body>
