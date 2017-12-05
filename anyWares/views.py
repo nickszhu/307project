@@ -188,3 +188,8 @@ def get_search_suggestions(request):
         data = 'fail'
     mimetype = 'application/'
     return HttpResponse(data, mimetype)
+
+def delete_item(request):
+    if request.method == 'POST':
+        Item.objects.filter(id=request.POST.get('item_id')).delete()
+    return redirect('myitems')
