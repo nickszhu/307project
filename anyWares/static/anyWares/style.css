@@ -138,3 +138,12 @@ footer {
   }
 
   .ui-autocomplete { z-index:2000 !important; }
+
+  .fa{
+	  font-size: 20px;
+  }
+  .fa:hover{
+	text-decoration: none;
+	color: #fdc02f;
+	transition: 0.5s ease;
+}
