@@ -46,11 +46,11 @@
           </div>
         </form>
       </div>
-      
+
       <div class="col-sm-3">
         {% if user.is_authenticated %}
         <div id="hellonavi">
-          Hello,
+          Hi,
           <span class="dropdown show">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{user}}
@@ -164,35 +164,32 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="{% static 'anyWares/jquery-ui.min.js' %}"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
   <script>
     $(document).ready(function () {
       $("#c1").toggle({ effect: "scale", origin: ["middle", "left"] });
-      setTimeout(function(){
-         $("#c2").toggle({ effect: "scale", origin: ["middle", "left"] });
-      },800);
-      // setTimeout(function () {}, 800 ));
+      setTimeout(function () {
+        $("#c2").toggle({ effect: "scale", origin: ["middle", "left"] });
+      }, 800);
     });
   </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
-  
-    <script type="text/javascript">
-      $(document).ready(function(){
-        
-        var location_input = $('input[id="search_box"]')
-        location_input.autocomplete({
-          source: "/anyWares/api/get_search_suggestions/",
-          minLength: 1,
-        });
-        console.log("test");
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      var location_input = $('input[id="search_box"]')
+      location_input.autocomplete({
+        source: "/anyWares/api/get_search_suggestions/",
+        minLength: 1,
       });
-      jQuery.ui.autocomplete.prototype._resizeMenu = function () {
-          var ul = this.menu.element;
-          ul.outerWidth(this.element.outerWidth());
-        }
-    </script>
-  
+    });
+    jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+      var ul = this.menu.element;
+      ul.outerWidth(this.element.outerWidth());
+    }
+  </script>
+
 </body>
 
 </html>
