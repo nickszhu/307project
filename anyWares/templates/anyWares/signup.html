@@ -7,8 +7,8 @@
 				isvalid();
 				var pswd = document.getElementById('password1').value;
 				//validate the length
-				if ( pswd.length < 5 ) {
-					document.getElementById('pswd_info').innerText = "Password must be at least five characters long.";
+				if ( pswd.length < 8 || !pswd.match(/\d/)) {
+					document.getElementById('pswd_info').innerText = "Password must be at least eight characters long and contain a number.";
 					$('#pswd_info').show();
 					}
 				else {
@@ -31,9 +31,12 @@
 			function isvalid(){
 				var p1 = document.getElementById('password1').value;
 				var p2 = document.getElementById('password2').value;
-				if(p1.length > 4 && p1==p2){
+				if(p1.length > 7 && p1==p2 && p1.match(/\d/)){
 						document.getElementById('register').removeAttribute('disabled');
 					}
+				else{
+					document.getElementById('register').disabled=true;
+				}
 			}
 </script>
 
