@@ -4,6 +4,7 @@
 <!--Add script for dynamically checking on user input to ensure password is long enough and that both match before you can predd register -Francesca Ryan-->
         <script type="text/javascript">
 		function p1key(){
+				isvalid();
 				var pswd = document.getElementById('password1').value;
 				//validate the length
 				if ( pswd.length < 5 ) {
@@ -11,11 +12,11 @@
 					$('#pswd_info').show();
 					}
 				else {
-					isvalid();
 					$('#pswd_info').hide();
 					}
 				}
 		function p2key(){
+				isvalid();
 				var pswd = document.getElementById('password2').value;
 				//validate the length
 				if ( pswd!==document.getElementById('password1').value) {
@@ -24,7 +25,6 @@
 					$('#pswd_info').show();
 					}
 				else {
-					isvalid();
 					$('#pswd_info').hide();
 				}
 			}
