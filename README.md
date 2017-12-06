@@ -1,6 +1,6 @@
 # 307 Project: AnyWares
 
-## Team members:
+## Team members
 Ryan Bass
 
 Shihang Zhu
@@ -17,15 +17,15 @@ Francesca Ryan
 
 -Install Django with the command: `pip install Django`
 
--Open a terminal and go to the root directory of the extracted folder
+-Open a terminal in the root directory of the extracted folder
 
 -Run the command: `python manage.py runserver`
 
--Visit `127.0.0.1:8000` or the development server address that Terminal indicates
+-Enter `127.0.0.1:8000/anyWares` in your browser or use the development server address indicated by the terminal
 
--Now you can try all the functionalities
+-All functionalities should now be available for testing
 
-## Technologies used:
+## Technologies used
 ### Frontend:
 1. HTML/CSS
 2. JS
