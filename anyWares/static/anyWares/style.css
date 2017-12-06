@@ -129,12 +129,12 @@ footer {
 
   .spybox{
 	  position: relative;
-	  height: 480px;
+	  height: 400px;
 	  overflow-y: scroll;
   }
 
   .h480{
-	height: 480px;
+	height: 400px;
 padding-left: 10%;
 
   }
@@ -148,4 +148,13 @@ padding-left: 10%;
 	text-decoration: none;
 	color: #fdc02f;
 	transition: 0.5s ease;
+}
+
+#pswd_info{
+	color:red;
+	width:100%;
+	padding-left:200px;
+	padding-top: 5px;
+	display: none;
+	text-align:right;
 }
