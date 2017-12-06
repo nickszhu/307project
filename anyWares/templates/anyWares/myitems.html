@@ -15,7 +15,7 @@
           <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
           <button type="submit" class="btn"><i class="fa fa-edit"></i></button>
         </form>
-        <form class="form my-auto" action="/anyWares/myitems/" method="get">
+        <form class="form my-auto" action="/anyWares/delete_item/" method="post">{% csrf_token %}
           <input type="hidden" name="item_id" id="item_id" value="{{ item.id }}">
           <button type="submit" class="btn"><i class="fa fa-trash"></i></button>
         </form>

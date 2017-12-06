@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^myitems$', views.myitems, name="myitems"),
     url(r'^edititem/$', views.edititem, name="edititem"),
     url(r'^api/get_search_suggestions/', views.get_search_suggestions, name="get_search_suggestions"),
+    url(r'^delete_item/$', views.delete_item, name="delete_item"),
 ]
