@@ -1,6 +1,42 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
 
+<!--Add script for dynamically checking on user input to ensure password is long enough and that both match before you can predd register -Francesca Ryan-->
+        <script type="text/javascript">
+		function p1key(){
+				var pswd = document.getElementById('password1').value;
+				//validate the length
+				if ( pswd.length < 5 ) {
+					document.getElementById('pswd_info').innerText = "Password must be at least five characters long.";
+					$('#pswd_info').show();
+					}
+				else {
+					isvalid();
+					$('#pswd_info').hide();
+					}
+				}
+		function p2key(){
+				var pswd = document.getElementById('password2').value;
+				//validate the length
+				if ( pswd!==document.getElementById('password1').value) {
+					document.getElementById('register').disabled = true;
+					document.getElementById('pswd_info').innerText = "Passwords must match.";
+					$('#pswd_info').show();
+					}
+				else {
+					isvalid();
+					$('#pswd_info').hide();
+				}
+			}
+			function isvalid(){
+				var p1 = document.getElementById('password1').value;
+				var p2 = document.getElementById('password2').value;
+				if(p1.length > 4 && p1==p2){
+						document.getElementById('register').removeAttribute('disabled');
+					}
+			}
+</script>
+
 <div class="container ">
   <form class="main-form my-5" action="/anyWares/signup/" method='post'>{% csrf_token %}
     <div class="form-group row">
@@ -12,35 +48,20 @@
     <div class="form-group row">
       <label for="password1" class="col-sm-3 col-form-label">Password</label>
       <div class="col-sm-9">
-        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
-        <!--Add script for dynamically checking on user input to ensure password is long enough and that both match-->
-        <script type="text/javascript">
-		document.getElementById('password1').addEventListener("keyup", function(event) {
-			(function(event) {
-				var pswd = $(this).val();
-				//validate the length
-				if ( pswd.length < 5 ) {
-					document.getElementById('pswd_info').innerText = "Password must be at least five characters long.";
-					$('#pswd_info').show();
-					}
-				else {
-					$('#pswd_info').hide();
-					}
-				}).call(document.getElementById('password1'), event);
-});
-</script>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" onKeyUp="p1key();">
       </div>
     </div>
     <div class="form-group row">
       <label for="password2" class="col-sm-3 col-form-label">Confirm Password</label>
       <div class="col-sm-9">
-        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password" onKeyUp="p2key();">
+
         <div id="pswd_info">
         	<h6>Password must be at least 5 characters long.</h6>
         </div>
       </div>
     </div>
-    <div class="form-group row">
+    <div style="padding-top:30px; "class="form-group row">
       <div class="col-sm-auto mx-auto">
         <div class="g-recaptcha" data-sitekey="6LdQajsUAAAAAJFpCw0c76pTXUL1Nu4phSe2oXBG"></div>
         {% if messages %}
@@ -54,7 +75,7 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary float-right">Register</button>
+        <button id="register" type="submit" class="btn btn-primary float-right" disabled>Register</button>
       </div>
     </div>
 
