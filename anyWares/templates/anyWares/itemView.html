@@ -3,6 +3,7 @@
 
 {% block mainbody %}
 <div class="container">
+<div style="width:60%; float:left;">
 <div class="row mt-5">
   <div class="col-md-4">
       <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
@@ -23,9 +24,11 @@
     <div class="font-italic">{{ item.description }}</div>
 
   </div>
-  <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
+  </div>
+  </div>
+  <!-- Map container -->
+  <img style="width: 40%; height: 50%; margin: 0; padding-top:40px; position: relative; float: right;" src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
   &markers=color:blue%7Clabel:S%7C{{ item.address }}{{ item.city }}{{ item.state }}{{ item.postal_code }}{{ item.country }}
   &key=AIzaSyAj5Asx5Ub8uaF_1gdje8rNa4-l1TbSEX0">
-</div>
 </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 import urllib
-import urllib2
+from urllib.request import urlopen
 import json
 
 from django.http import HttpResponse
