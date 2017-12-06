@@ -169,6 +169,7 @@ def signup(request):
                 return redirect('index')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                return render(request, 'anywares/signup.html', {'form': form})
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
