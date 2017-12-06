@@ -27,11 +27,14 @@ header {
 	position: sticky;
 }
 
-/*inner container for item information*/
-iteminfocontainer {
-	width: 70%;
+#pswd_info{
+	color:red;
+	width:100%;
+	padding-left:200px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: none;
 }
-
 
 /*footer*/
 

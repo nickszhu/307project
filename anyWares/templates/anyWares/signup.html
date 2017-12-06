@@ -13,12 +13,31 @@
       <label for="password1" class="col-sm-3 col-form-label">Password</label>
       <div class="col-sm-9">
         <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+        <!--Add script for dynamically checking on user input to ensure password is long enough and that both match-->
+        <script type="text/javascript">
+		document.getElementById('password1').addEventListener("keyup", function(event) {
+			(function(event) {
+				var pswd = $(this).val();
+				//validate the length
+				if ( pswd.length < 5 ) {
+					document.getElementById('pswd_info').innerText = "Password must be at least five characters long.";
+					$('#pswd_info').show();
+					}
+				else {
+					$('#pswd_info').hide();
+					}
+				}).call(document.getElementById('password1'), event);
+});
+</script>
       </div>
     </div>
     <div class="form-group row">
       <label for="password2" class="col-sm-3 col-form-label">Confirm Password</label>
       <div class="col-sm-9">
         <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
+        <div id="pswd_info">
+        	<h6>Password must be at least 5 characters long.</h6>
+        </div>
       </div>
     </div>
     <div class="form-group row">
