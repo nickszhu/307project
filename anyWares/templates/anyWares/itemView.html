@@ -3,8 +3,10 @@
   <div class="row mt-5">
     <div class="col-md-4">
       <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
-      <div class="mt-1 text-center"><button id="maptoggle" type="button" class="btn btn-outline-success">Show Direction</button></div>
-      
+      <div class="mt-1 text-center">
+        <button id="maptoggle" type="button" class="btn btn-outline-success">Show Direction</button>
+      </div>
+
     </div>
     <div class="col-md-8">
       <div>
@@ -17,9 +19,12 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
       </div>
+      <div>{{ item.date_listed }}</div>
       <br/>
       <div>${{ item.rental_price }}</div>
-      <div>{{ item.date_listed }}</div>
+      <br/>
+      <div> {{item.owner_ID.phone}}</div>
+      <div> {{item.owner_ID.email}}</div>
       <br/>
       <div class="font-italic">{{ item.description }}</div>
     </div>
@@ -33,8 +38,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-  $("#maptoggle").click(function(){
-        $("#maps").toggle("linear");
-    });
-</script>
-{% endblock %}
+  $("#maptoggle").click(function () {
+    $("#maps").toggle("linear");
+  });
+</script> {% endblock %}

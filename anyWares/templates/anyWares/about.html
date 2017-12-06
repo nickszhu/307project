@@ -2,67 +2,94 @@
 <div class="container mt-4">
 
 
-    <nav id="navbar-example2" class="navbar navbar-light">
-        
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="#frontend">Frontend</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#backend">Backend</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#positive">Positive</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#negative">Negative</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="spybox" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-        <div class="h480">
-            <h4 id="frontend">Frontend</h4>
-            <br/>
-            <p><i class="fa fa-html5"></i>HTML5</p>
-            <p><i class="fa fa-css3"></i>CSS 3</p>
-            <i class="fa fa-github"></i><p>Bootstrap 4</p>
-            <br/>
-            <br/>
-            <br/>
-        </div>
+  <nav id="navbar-example2" class="navbar navbar-light">
 
-        <div class="h480">
-            <h4 id="backend">Backend</h4>
-            <p>...</p>
-            <p>Django</p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-        
-        <div class="h480">
-            <h4 id="positive">Positive</h4>
-            <p>...</p>
-            <br/>
-            <br/>
-            <br/>
-            
-        </div>
-        <div class="h480">
-            <h4 id="negative">Negative</h4>
-            <p>...</p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            
-        </div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" href="#intro">Intro</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#frontend">Frontend</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#backend">Backend</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#special">Special</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#positive">Positive</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#negative">Negative</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="spybox" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+    <div class="h480" id="intro">
+      <h1 style="color:orange;font-style:italic;font-weight:bold">anyWares</h1>
+      <p class="container" style="font-style:italic;">
+        AnyWares is dedicated to promote the “Sharing Economy” by making best use of spare facilities.
+        Our goal is to make renting accessable, facile and pleasant.
+      </p>
 
+      <p>Contributors:</p>
+      <ul>
+        <li>Ryan Bass</li>
+        <li>Shihag Zhu</li>
+        <li>Francesca Ryan</li>
+      </ul>
     </div>
 
+    <div class="h480" id="frontend">
+      <h1>Frontend</h1>
+      <ul style="font-size:x-large;">
+        <li>HTML
+          <i class="fa fa-html5"></i>
+          / CSS
+          <i class="fa fa-css3"></i>
+        </li>
+        <li>Bootstrap 4</li>
+        <li>Django Web Templates</li>
+        <li>JQuery</li>
+        <li>AJAX</li>
+      </ul>
+    </div>
+
+    <div class="h480" id="backend">
+      <h1>Backend</h1>
+      <ul style="font-size:x-large;">
+        <li>Django</li>
+        <li>Python</li>
+        <li>SQLite 3</li>
+      </ul>
+    </div>
+
+    <div class="h480" id="special">
+      <h1>Special Tech</h1>
+      <ul style="font-size:x-large;">
+        <li>Google Maps</li>
+        <li>reCAPTCHA</li>
+        <li>CSRF</li>
+      </ul>
+    </div>
+    <div class="h480" id="positive">
+      <h1>Positive</h1>
+      <ul style="font-size:x-large;">
+        <li>New Technologies</li>
+        <li>Team Work</li>
+        <li>Planning before implementing</li>
+      </ul>
+    </div>
+    <div class="h480" id="negative">
+      <h1>Negative</h1>
+      <ul style="font-size:x-large;">
+        <li>Simple is complicated</li>
+        <li>Version Control</li>
+        <li>Project Structure and Naming</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

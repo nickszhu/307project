@@ -135,6 +135,8 @@ footer {
 
   .h480{
 	height: 480px;
+padding-left: 10%;
+
   }
 
   .ui-autocomplete { z-index:2000 !important; }
