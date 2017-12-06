@@ -22,26 +22,12 @@
     <div>{{ item.date_listed }}</div>
     <br/>
     <div class="font-italic">{{ item.description }}</div>
-    
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-		<input type="hidden" name="cmd" value="_s-xclick">
-		<input type="hidden" name="hosted_button_id" value="JWHT73JYLYQY2">
-        <input type="hidden" name="business" value="francesca@ryancorp.com">
-        <input type="hidden" name="currency_code" value="CAD">
-        <input type="hidden" name="item_name" value="item.name">
-        <input type="hidden" name="amount" value="item.rental_price">
-		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
 
   </div>
   </div>
   </div>
   <!-- Map container -->
-  <div style="padding-top:54px;"><h4>Location:</h4></div>
-  <img style="width: 40%; height: 50%; margin: 0; padding-top:10px; position: relative; float: right;" src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
+  <img style="width: 40%; height: 50%; margin: 0; padding-top:40px; position: relative; float: right;" src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
   &markers=color:blue%7Clabel:S%7C{{ item.address }}{{ item.city }}{{ item.state }}{{ item.postal_code }}{{ item.country }}
   &key=AIzaSyAj5Asx5Ub8uaF_1gdje8rNa4-l1TbSEX0">
 </div>
