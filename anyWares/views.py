@@ -1,5 +1,4 @@
 import urllib
-from urllib.request import urlopen
 import json
 
 from django.http import HttpResponse
@@ -17,6 +16,8 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from anyWares.forms import NewItemForm
+from django.views.generic.edit import UpdateView
+from django.forms.models import model_to_dict
 
 
 def index(request):
@@ -65,11 +66,13 @@ def search(request):
 
 def myitems(request):
     item_found = False
-    if request.method == 'GET':
-        current_user = request.user
-        item_list = Item.objects.filter(owner_ID=current_user.profile)
-        if item_list.count() > 0:
-            item_found = True
+    if request.method == 'POST':
+        Item.objects.filter(id=request.POST.get('item_id')).delete()
+        return redirect('myitems')
+    current_user = request.user
+    item_list = Item.objects.filter(owner_ID=current_user.profile)
+    if item_list.count() > 0:
+        item_found = True
         
     page = request.GET.get('page', 1)
 
@@ -117,45 +120,6 @@ def createItem(request):
     else:
         form = NewItemForm()
     return render(request, 'anyWares/createItem.html', {'form': form})
-    '''
-    category_list = Category.objects.all()
-    if request.method == 'POST':
-
-        recaptcha_response = request.POST.get('g-recaptcha=response')
-        data = {
-            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
-            'response': recaptcha_response
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json
-
-        if result['success']:
-            return HttpResponse("test")
-            form = NewItemForm(request.POST, request.FILES)
-            if form.is_valid():
-                new_item = form.save()
-                new_item.refresh_from_db()
-                return redirect(reverse('itemView') + '?item_id=' + str(new_item.pk))
-            
-            item_name = request.POST.get("item_name")
-            category = request.POST.get("item_category")
-            item_category = category_list.get(category_name=category)
-            if request.user.is_authenticated():
-                item_owner = Profile.objects.get(user=request.user)
-            item_description = request.POST.get("item_category")
-            item_price = request.POST.get("item_price")
-            if request.FILES['item_image']:
-                new_image = request.FILES['item_image']
-                fs = FileSystemStorage()
-                fs.save(new_image.name, new_image)
-            new_item = Item(name=item_name, category_ID=item_category, owner_ID=item_owner, description=item_description, rating=0, image=new_image, rental_price=item_price)
-            new_item.save()
-            new_item.refresh_from_db()
-            messages.success(request, 'Successfully added new item!')
-            
-            
-    return render(request, 'anyWares/createItem.html', {'category_list': category_list}, {'form': form})
-'''
 
 def account(request):
     if request.method == 'POST':
@@ -204,12 +168,43 @@ def signup(request):
                 return redirect('index')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
+                return render(request, 'anywares/signup.html', {'form': form})
     else:
         form = UserCreationForm()
     return render(request, 'anywares/signup.html', {'form': form})
 
 def edititem(request):
-    return render(request, 'anyWares/edititem.html')
+    if request.method == 'GET':
+        item = Item.objects.get(id=request.GET.get('item_id'))
+        form = NewItemForm(request.POST or None, instance=item)
+    elif request.method == 'POST':
+        form = NewItemForm(request.POST, request.FILES)
+        item = Item.objects.get(pk=request.POST.get("item_id"))
+        if form.is_valid():
+            data = form.cleaned_data
+            item.name = data['name']
+            item.category_ID = data['category_ID']
+            item.description = data['description']
+            item.rental_price = data['rental_price']
+            item.start_date = data['start_date']
+            item.end_date = data['end_date']
+            item.address = data['address']
+            item.address2 = data['address2']
+            item.city = data['city']
+            item.state = data['state']
+            item.postal_code = data['postal_code']
+            item.country = data['country']
+            item.save()
+            item.refresh_from_db()
+            return redirect(reverse('itemView') + '?item_id=' + str(item.pk))
+    else:
+        form = NewItemForm()
+    return render(request, 'anyWares/edititem.html', {'form': form, 'item': item})
+
+'''
+class UpdateItem(UpdateView):
+    model = Item
+'''
 
 def get_search_suggestions(request):
     if request.is_ajax():

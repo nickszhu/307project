@@ -27,17 +27,6 @@ header {
 	position: sticky;
 }
 
-#pswd_info{
-	color:red;
-	width:100%;
-	padding-left:200px;
-	padding-top: 5px;
-	display: none;
-	text-align:right;
-}
-
-/*footer*/
-
 footer {
 	width: 100%;
 	height: 81px;
@@ -51,7 +40,7 @@ footer {
 }
 
 
-/* Logo */
+/* Logo placeholder*/
 
 #logoctn {
 	margin-top: 15px;
@@ -140,12 +129,14 @@ footer {
 
   .spybox{
 	  position: relative;
-	  height: 480px;
+	  height: 400px;
 	  overflow-y: scroll;
   }
 
   .h480{
-	height: 480px;
+	height: 400px;
+padding-left: 10%;
+
   }
 
   .ui-autocomplete { z-index:2000 !important; }
@@ -158,3 +149,36 @@ footer {
 	color: #fdc02f;
 	transition: 0.5s ease;
 }
+
+#pswd_info{
+	color:red;
+	width:100%;
+	margin-left: 50%;
+}
+
+#emailowner{
+padding: 15px 0 0 0;
+}
+
+#emailowner a{
+    color: white;
+    background-color:#113358;
+    padding: 5px 5px 4px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
+#emailowner a:visited{
+    color:white;
+} 
+
+#emailowner a:hover{
+    text-decoration: none;
+    color: #fdc02f;
+} 
+
+#emailowner a:active{
+    text-decoration: none;
+    color: white;
+} 

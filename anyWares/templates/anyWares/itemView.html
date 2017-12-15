@@ -1,48 +1,56 @@
-{% extends "./index.html" %}
-{% load static from staticfiles %}
-
-{% block mainbody %}
+{% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
 <div class="container">
-<div style="width:60%; float:left;">
-<div class="row mt-5">
-  <div class="col-md-4">
+  <div class="row mt-5">
+    <div class="col-md-4">
       <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
-  </div>
-  <div class="col-md-8">
-    <div><h2>{{ item.name }}</h2></div>
-    <div>by {{item.owner_ID}} 
+      <div class="mt-1 text-center">
+        <button id="maptoggle" type="button" class="btn btn-outline-success">Show Location</button>
+      </div>
+
+    </div>
+    <div class="col-md-8">
+      <div>
+        <h2>{{ item.name }}</h2>
+      </div>
+      <div>by {{item.owner_ID}}
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
+      </div>
+      <div>{{ item.date_listed }}</div>
+	<div>Rent from {{ item.start_date}} to {{ item.end_date}}</div>
+      <br/>
+      <div>${{ item.rental_price }}</div>
+      <br/>
+      <div> {{item.owner_ID.phone}}</div>
+      <div> {{item.owner_ID.email}}</div>
+	<div id="emailowner"><a href="mailto:{{item.owner_ID.email}}">Email Owner</a></div>
+      <br/>
+      <div class="font-italic">{{ item.description }}</div>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="hosted_button_id" value="JWHT73JYLYQY2">
+            <input type="hidden" name="business" value={{item.owner_ID.email}}>
+            <input type="hidden" name="currency_code" value="CAD">
+            <input type="hidden" name="item_name" value="{{item.name}}">
+            <input type="hidden" name="amount" value="{{item.rental_price}}">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
     </div>
-    <br/>
-    <div>${{ item.rental_price }}</div>
-    <div>{{ item.date_listed }}</div>
-    <br/>
-    <div class="font-italic">{{ item.description }}</div>
-    
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-		<input type="hidden" name="cmd" value="_s-xclick">
-		<input type="hidden" name="hosted_button_id" value="JWHT73JYLYQY2">
-        <input type="hidden" name="business" value="francesca@ryancorp.com">
-        <input type="hidden" name="currency_code" value="CAD">
-        <input type="hidden" name="item_name" value="item.name">
-        <input type="hidden" name="amount" value="item.rental_price">
-		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-
-
   </div>
+  <div class="row mt-5" id="maps" style="display:none;">
+    <iframe width="100%" height="450px" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDXMY2HK8dI_71MbzNbQYPj6Nt1UGAOB54
+  &q={{ item.address }}+{{ item.city }}+{{ item.state }}+{{ item.postal_code }}+{{ item.country }}" allowfullscreen>
+    </iframe>
   </div>
-  </div>
-  <!-- Map container -->
-  <div style="padding-top:54px;"><h4>Location:</h4></div>
-  <img style="width: 40%; height: 50%; margin: 0; padding-top:10px; position: relative; float: right;" src="https://maps.googleapis.com/maps/api/staticmap?center={{ item.address }}, {{ item.city }}, {{ item.state }}, {{ item.postal_code }}, {{ item.country }}&zoom=13&size=600x300&maptype=roadmap
-  &markers=color:blue%7Clabel:S%7C{{ item.address }}{{ item.city }}{{ item.state }}{{ item.postal_code }}{{ item.country }}
-  &key=AIzaSyAj5Asx5Ub8uaF_1gdje8rNa4-l1TbSEX0">
+
 </div>
-{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  $("#maptoggle").click(function () {
+    $("#maps").toggle("linear");
+  });
+</script> {% endblock %}

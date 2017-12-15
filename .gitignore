@@ -2,5 +2,3 @@ mysite/*.pyc
 anyWares/*.pyc
 anyWares/migrations/*.pyc
 **/*.pyc
-anyWares/__pycache__/__init__.cpython-36.pyc
-*.pyc

@@ -1,45 +1,6 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <link href="../../static/anyWares/style.css" rel="stylesheet" type="text/css"> {% extends "./index.html" %} {% load static from staticfiles %} {% block mainbody %}
 
-<!--Add script for dynamically checking on user input to ensure password is long enough and that both match before you can predd register -Francesca Ryan-->
-        <script type="text/javascript">
-		function p1key(){
-				isvalid();
-				var pswd = document.getElementById('password1').value;
-				//validate the length
-				if ( pswd.length < 8 || !pswd.match(/\d/)) {
-					document.getElementById('pswd_info').innerText = "Password must be at least eight characters long and contain a number.";
-					$('#pswd_info').show();
-					}
-				else {
-					$('#pswd_info').hide();
-					}
-				}
-		function p2key(){
-				isvalid();
-				var pswd = document.getElementById('password2').value;
-				//validate the length
-				if ( pswd!==document.getElementById('password1').value) {
-					document.getElementById('register').disabled = true;
-					document.getElementById('pswd_info').innerText = "Passwords must match.";
-					$('#pswd_info').show();
-					}
-				else {
-					$('#pswd_info').hide();
-				}
-			}
-			function isvalid(){
-				var p1 = document.getElementById('password1').value;
-				var p2 = document.getElementById('password2').value;
-				if(p1.length > 7 && p1==p2 && p1.match(/\d/)){
-						document.getElementById('register').removeAttribute('disabled');
-					}
-				else{
-					document.getElementById('register').disabled=true;
-				}
-			}
-</script>
-
 <div class="container ">
   <form class="main-form my-5" action="/anyWares/signup/" method='post'>{% csrf_token %}
     <div class="form-group row">
@@ -51,26 +12,30 @@
     <div class="form-group row">
       <label for="password1" class="col-sm-3 col-form-label">Password</label>
       <div class="col-sm-9">
-        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" onKeyUp="p1key();">
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
       </div>
     </div>
     <div class="form-group row">
       <label for="password2" class="col-sm-3 col-form-label">Confirm Password</label>
       <div class="col-sm-9">
-        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password" onKeyUp="p2key();">
-
-        <div id="pswd_info">
-        	<h6>Password must be at least 5 characters long.</h6>
-        </div>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
       </div>
+
     </div>
-    <div style="padding-top:30px; "class="form-group row">
+    <div>
+      <ul id="pswd_info">
+        <li id="length" style="display:none">Minimum 8 characters</li>
+        <li id="number" style="display:none">At least 1 number</li>
+        <li id="match" style="display:none">Passwords must match</li>
+      </ul>
+    </div>
+    <div class="form-group row">
       <div class="col-sm-auto mx-auto">
         <div class="g-recaptcha" data-sitekey="6LdQajsUAAAAAJFpCw0c76pTXUL1Nu4phSe2oXBG"></div>
-        {% if messages %}
+         {% if messages %}
         <ul class="messages">
           {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red">{{ message }}</li>
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red">{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -78,10 +43,45 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <button id="register" type="submit" class="btn btn-primary float-right" disabled>Register</button>
+        <button type="submit" class="btn btn-primary float-right">Register</button>
       </div>
     </div>
 
   </form>
 </div>
-{% endblock %}
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<script type="text/javascript">
+  var p1 = document.getElementById("password1");
+  var p2 = document.getElementById("password2");
+  var match = document.getElementById("match");
+  var number = document.getElementById("number");
+  var length = document.getElementById("length");
+
+  p1.onkeyup = function () {
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if (p1.value.match(numbers)) {
+      $('#number').hide();
+    } else {
+      $('#number').show();
+    }
+
+    // Validate length
+    if (p1.value.length >= 8) {
+      $('#length').hide();
+    } else {
+      $('#length').show();
+    }
+  }
+
+  p2.onkeyup = function () {
+    // Validate matching
+    if (p2.value.match(p1.value)) {
+      $('#match').hide();
+    } else {
+      $('#match').show();
+    }
+  }
+</script> {% endblock %}
