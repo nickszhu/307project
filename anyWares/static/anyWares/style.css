@@ -155,3 +155,30 @@ padding-left: 10%;
 	width:100%;
 	margin-left: 50%;
 }
+
+#emailowner{
+padding: 15px 0 0 0;
+}
+
+#emailowner a{
+    color: white;
+    background-color:#113358;
+    padding: 5px 5px 4px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
+#emailowner a:visited{
+    color:white;
+} 
+
+#emailowner a:hover{
+    text-decoration: none;
+    color: #fdc02f;
+} 
+
+#emailowner a:active{
+    text-decoration: none;
+    color: white;
+} 

@@ -4,7 +4,7 @@
     <div class="col-md-4">
       <img class="card-img-top" src="{% static item.image.url %}" alt="{{ item.image }}">
       <div class="mt-1 text-center">
-        <button id="maptoggle" type="button" class="btn btn-outline-success">Show Direction</button>
+        <button id="maptoggle" type="button" class="btn btn-outline-success">Show Location</button>
       </div>
 
     </div>
@@ -20,17 +20,19 @@
         <span class="fa fa-star"></span>
       </div>
       <div>{{ item.date_listed }}</div>
+	<div>Rent from {{ item.start_date}} to {{ item.end_date}}</div>
       <br/>
       <div>${{ item.rental_price }}</div>
       <br/>
       <div> {{item.owner_ID.phone}}</div>
       <div> {{item.owner_ID.email}}</div>
+	<div id="emailowner"><a href="mailto:{{item.owner_ID.email}}">Email Owner</a></div>
       <br/>
       <div class="font-italic">{{ item.description }}</div>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="hosted_button_id" value="JWHT73JYLYQY2">
-            <input type="hidden" name="business" value="francesca@ryancorp.com">
+            <input type="hidden" name="business" value={{item.owner_ID.email}}>
             <input type="hidden" name="currency_code" value="CAD">
             <input type="hidden" name="item_name" value="{{item.name}}">
             <input type="hidden" name="amount" value="{{item.rental_price}}">
